@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 261059136886852856}
   - component: {fileID: 2244141452456360202}
   m_Layer: 0
-  m_Name: glassDoor7
+  m_Name: Right_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2583892503301331408}
   serializedVersion: 2
   m_LocalRotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -5.0532154e-16}
-  m_LocalPosition: {x: -0.107393265, y: 2.8706486, z: 0.026506424}
+  m_LocalPosition: {x: -1.146, y: 2.8706486, z: 0.026506424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7103742833640336062}
   - component: {fileID: 2916213232443814729}
   m_Layer: 0
-  m_Name: glassDoor6
+  m_Name: Left_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 3226774021085249645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.932539, y: 2.8706486, z: 0.026506424}
+  m_LocalPosition: {x: -3.7490003, y: 2.8706486, z: 0.026506424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -235,6 +235,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7929517901463593367}
+  - component: {fileID: -5402108714343693864}
+  - component: {fileID: 6597193055016279407}
+  - component: {fileID: -4224080559088572686}
+  - component: {fileID: -3904914077843445568}
   m_Layer: 0
   m_Name: entrance
   m_TagString: Untagged
@@ -250,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7102825856450483337}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.283205, y: 0.33998242, z: 1.8751869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -259,3 +263,79 @@ Transform:
   - {fileID: 7190641509532029575}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &-5402108714343693864
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102825856450483337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!114 &6597193055016279407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102825856450483337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f46d75da67b0c408351229bcef8202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoubleSlidingDoor
+  leftDoor: {fileID: 8463910356413453440}
+  rightDoor: {fileID: 7190641509532029575}
+  openDistance: 1.2
+  moveDuration: 0.75
+  movementAxis: {x: 1, y: 0, z: 0}
+--- !u!65 &-4224080559088572686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102825856450483337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.87, y: 1, z: 1.45}
+  m_Center: {x: -2.43, y: 0, z: 0}
+--- !u!114 &-3904914077843445568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102825856450483337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c46218b4b73914280349a3de28ad11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoubleDoorTrigger
+  slidingDoor: {fileID: 6597193055016279407}
+  playerTag: Player
+  npcTag: NPC
+  closeDelay: 3
