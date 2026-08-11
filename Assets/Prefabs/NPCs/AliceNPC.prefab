@@ -541,7 +541,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: 776ee52ac569a14419165050f779f115, type: 3}
+  - {fileID: 2100000, guid: 37493cca59ce24d49ba6802503467374, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
