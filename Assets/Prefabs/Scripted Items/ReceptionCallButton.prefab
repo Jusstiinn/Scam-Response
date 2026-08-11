@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6943844146308445573}
-  m_Layer: 0
-  m_Name: number_caller1
+  - component: {fileID: 3037636327538096982}
+  - component: {fileID: 7061330364746309089}
+  m_Layer: 10
+  m_Name: ReceptionCallButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294317088733702594}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.248497, y: 2.1317081, z: -22.407368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,6 +35,36 @@ Transform:
   - {fileID: 751736855259285236}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3037636327538096982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294317088733702594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a791b527eb0a6bb4cabfcb0902eaa1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PressButtonAnimation
+  buttonTop: {fileID: 751736855259285236}
+  pressDistance: 0.03
+  pressSpeed: 8
+  holdDuration: 0.08
+--- !u!114 &7061330364746309089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294317088733702594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f77ca7184cb8d240ad61c19e5216874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReceptionCallButton
+  receptionManager: {fileID: 0}
+  physicalButton: {fileID: 3037636327538096982}
 --- !u!1 &2847015588627608092
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +77,7 @@ GameObject:
   - component: {fileID: 6696871127372049503}
   - component: {fileID: 4363574625605274947}
   - component: {fileID: 6356949217676898803}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +190,7 @@ GameObject:
   - component: {fileID: 435722609027841638}
   - component: {fileID: 8971708616155380529}
   - component: {fileID: 8368495873283445453}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCylinder9
   m_TagString: Untagged
   m_Icon: {fileID: 0}

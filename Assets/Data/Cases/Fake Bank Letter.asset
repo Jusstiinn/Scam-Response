@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d9b320ba1bccb4f9fd7e7f2cb4c281, type: 3}
+  m_Name: Fake Bank Letter
+  m_EditorClassIdentifier: Assembly-CSharp::ScamCaseData
+  caseId: C03
+  queueNumber: A103
+  caseTitle: Fake Bank Letter
+  scamType: Investment Scam
+  victimName: Daniel Lee
+  victimAge: 46
+  victimOccupation: Operations Manager
+  initialComplaint: Someone claiming to be a financial adviser contacted me about
+    an investment opportunity that was supposedly offered through a major bank. They
+    even showed me documents carrying the bank's branding.
+  lobbyNpcPrefab: {fileID: 8709656706217410242, guid: 410902c37f380a448b22e6aa088c344b, type: 3}
+  interviewNpcPrefab: {fileID: 8709656706217410242, guid: 410902c37f380a448b22e6aa088c344b, type: 3}
+  behaviourType: 2
+  interviewDecisions:
+  - npcLine: The person introduced himself as a financial adviser representing a
+      bank. He told me about an investment with very attractive returns.
+    choices:
+    - playerChoice: How did he prove that he was connected to the bank?
+      npcResponse: He sent me documents with the bank's logo, letterhead and contact
+        information. They looked official.
+      unlockedFactIds:
+      - bank_impersonation
+      - fake_letterhead
+      - bank_logo
+    - playerChoice: You trusted him just because he said he worked for a bank?
+      npcResponse: It wasn't just that. He showed me documents too, but I don't remember
+        all the details.
+      unlockedFactIds:
+      - bank_impersonation
+  - npcLine: He told me that the investment opportunity was only available for a
+      limited time and that I needed to act quickly.
+    choices:
+    - playerChoice: Did he promise any specific returns?
+      npcResponse: Yes. He said the investment could provide unusually high returns
+        and made it sound very safe because it was supposedly connected to the bank.
+      unlockedFactIds:
+      - high_returns
+      - limited_time_pressure
+      - claimed_safe_investment
+    - playerChoice: High returns should obviously have been suspicious.
+      npcResponse: It sounded convincing at the time. He kept saying the opportunity
+        would expire soon.
+      unlockedFactIds:
+      - limited_time_pressure
+  - npcLine: Eventually he instructed me to transfer money for the investment.
+    choices:
+    - playerChoice: Where were you instructed to transfer the money?
+      npcResponse: The transfer details didn't actually match the bank itself. I
+        only realised that after I tried contacting the bank directly.
+      unlockedFactIds:
+      - suspicious_transfer
+      - not_official_bank_account
+      - direct_bank_verification
+    - playerChoice: You transferred the money without calling the bank?
+      npcResponse: I believed the adviser was genuine. I don't want to keep going
+        over what I should have done differently.
+      unlockedFactIds:
+      - suspicious_transfer
+  caseFileQuestions:
+  - questionId: bank_identity
+    prompt: Who did the scammer claim to be?
+    options:
+    - Bank financial adviser
+    - Delivery driver
+    - Police officer
+    - University employee
+    correctOptionIndex: 0
+    supportingFactId: bank_impersonation
+    explanation: The scammer impersonated a financial adviser connected to a legitimate
+      bank.
+  - questionId: bank_proof
+    prompt: What was used to make the investment appear legitimate?
+    options:
+    - Fake bank letters and branding
+    - Delivery receipt
+    - Government identification card
+    - Security alert email
+    correctOptionIndex: 0
+    supportingFactId: fake_letterhead
+    explanation: Fake bank letters, logos and branding were used to make the fraudulent
+      investment opportunity appear genuine.
+  - questionId: bank_pressure
+    prompt: Which tactic encouraged the victim to act quickly?
+    options:
+    - Limited-time investment opportunity
+    - Parcel cancellation
+    - Account password expiry
+    - Job interview deadline
+    correctOptionIndex: 0
+    supportingFactId: limited_time_pressure
+    explanation: The scammer created urgency by claiming that the investment opportunity
+      would only be available for a limited time.
+  - questionId: bank_payment
+    prompt: What was suspicious about the payment instructions?
+    options:
+    - Money was not being transferred to an official bank account
+    - Payment had to be made at a supermarket
+    - The investment was completely free
+    - Payment had to be made using game credits
+    correctOptionIndex: 0
+    supportingFactId: not_official_bank_account
+    explanation: The transfer details did not belong to the legitimate bank being
+      represented, which was a major warning sign.
+  howTheScamWorks: Scammers impersonate financial advisers or representatives of
+    legitimate banks and offer fake investment opportunities. They may use fake letters,
+    logos and other bank branding to make the offer appear genuine before convincing
+    victims to transfer money.
+  warningSigns: "\u2022 Unsolicited investment offers.\n\u2022 Pressure to invest
+    quickly.\n\u2022 Promises of unusually high or guaranteed returns.\n\u2022 Bank-branded
+    documents that cannot be independently verified.\n\u2022 Requests to transfer
+    money to accounts that do not belong to the financial institution being represented."
+  howToAvoid: Verify investment opportunities directly with the financial institution
+    through official contact channels. Do not rely solely on documents, messages
+    or contact information supplied by the person offering the investment.
+  whatToDoIfVictim: Contact the relevant bank immediately if money has already been
+    transferred. Preserve messages, documents and transaction records and report
+    the incident through the appropriate official channels.
