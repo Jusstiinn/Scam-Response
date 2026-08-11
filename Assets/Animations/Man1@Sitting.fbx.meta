@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8b7d1bdcad934114b8c97b0752b8d021
+guid: 9c228335cc1b4ae4b99d1ce58c18c5af
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Breathing Idle
+      name: Sitting
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 298
+      lastFrame: 210
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
