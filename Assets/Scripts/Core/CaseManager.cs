@@ -14,15 +14,25 @@ public class CaseManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public ScamCaseData SelectRandomIncompleteCase()
+    public ScamCaseData SelectNextIncompleteCase()
     {
-        if (GameManager.Instance.CurrentCase != null) return GameManager.Instance.CurrentCase;
-        List<ScamCaseData> remaining = new();
-        foreach (var c in cases) if (c != null && !GameManager.Instance.IsCaseCompleted(c)) remaining.Add(c);
-        if (remaining.Count == 0) return null;
-        var selected = remaining[Random.Range(0, remaining.Count)];
-        GameManager.Instance.StartCase(selected);
-        return selected;
+        if (GameManager.Instance.CurrentCase != null)
+            return GameManager.Instance.CurrentCase;
+
+        // Go through the cases in Inspector order.
+        for (int i = 0; i < cases.Count; i++)
+        {
+            ScamCaseData c = cases[i];
+
+            if (c != null &&
+                !GameManager.Instance.IsCaseCompleted(c))
+            {
+                GameManager.Instance.StartCase(c);
+                return c;
+            }
+        }
+
+        return null;
     }
 
     public bool AllCasesCompleted()

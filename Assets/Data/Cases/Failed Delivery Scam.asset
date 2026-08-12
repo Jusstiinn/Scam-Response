@@ -22,9 +22,9 @@ MonoBehaviour:
   initialComplaint: I received a text message saying that my parcel delivery had
     failed and that I needed to update my information before they could deliver it
     again.
-  lobbyNpcPrefab: {fileID: 4118902309913946028, guid: e32b65b80c78c474488e45af03a50738, type: 3}
-  interviewNpcPrefab: {fileID: 4118902309913946028, guid: e32b65b80c78c474488e45af03a50738, type: 3}
-  behaviourType: 1
+  lobbyNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
+  interviewNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
+  behaviourType: 2
   interviewDecisions:
   - npcLine: I was expecting a parcel that week, so when I received the delivery
       message I didn't think it was suspicious.

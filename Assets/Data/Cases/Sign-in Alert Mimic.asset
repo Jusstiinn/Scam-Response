@@ -22,21 +22,24 @@ MonoBehaviour:
   initialComplaint: I received a security alert saying that someone had accessed
     my account. I followed the instructions in the email because I was worried that
     my account had been compromised.
-  lobbyNpcPrefab: {fileID: 735103541963962293, guid: e36d27b014b256b4a9910fd1c3abaaae, type: 3}
-  interviewNpcPrefab: {fileID: 735103541963962293, guid: e36d27b014b256b4a9910fd1c3abaaae, type: 3}
+  lobbyNpcPrefab: {fileID: 8067685855151852537, guid: 9e485c1c619baa7429b4ae17a9c7b301, type: 3}
+  interviewNpcPrefab: {fileID: 8067685855151852537, guid: 9e485c1c619baa7429b4ae17a9c7b301, type: 3}
   behaviourType: 0
   interviewDecisions:
-  - npcLine: I received an email saying there was a suspicious sign-in to my account.
-      It looked almost exactly like a normal security alert.
+  - npcLine: I got a sign-in alert saying someone had accessed my account from another
+      device. I panicked because I thought someone was already inside my account.
+    choices: []
+  - npcLine: The message said I had to secure my account immediately by clicking
+      a link.
     choices:
-    - playerChoice: Can you tell me what the email looked like?
+    - playerChoice: What did the sign-in alert look like?
       npcResponse: It had the Google logo and said that a security risk had been
         detected. There was also a button asking me to check my account activity.
       unlockedFactIds:
       - google_logo
       - urgent_security_warning
       - check_activity_button
-    - playerChoice: Why did you click something like that without checking first?
+    - playerChoice: You clicked the link without checking whether the alert was real?
       npcResponse: I already told you it looked real. I was worried about my account
         and didn't really think about it at the time.
       unlockedFactIds:
@@ -45,30 +48,41 @@ MonoBehaviour:
       in again.
     choices:
     - playerChoice: Did anything about the login page seem unusual?
-      npcResponse: Looking back, the website address wasn't the normal Google address.
-        But the page itself looked almost identical to the real login page.
+      npcResponse: Looking back, the website address was slightly different from
+        the actual Google address. But the page itself looked almost identical to
+        the real login page.
       unlockedFactIds:
       - fake_login_page
       - suspicious_url
-    - playerChoice: So you just typed your password into a random website?
-      npcResponse: I thought it was Google's website at the time. I don't remember
-        much else about the page.
+    - playerChoice: You entered your password again even though you were already
+        signed in?
+      npcResponse: "Yeah\u2026 the page said I needed to confirm my identity because
+        of the suspicious sign-in."
       unlockedFactIds:
       - fake_login_page
-  - npcLine: After entering my details, I started receiving notifications that someone
-      was trying to access my account.
+  - npcLine: After I entered my password, I received another verification code and
+      the page asked me to enter that too.
     choices:
-    - playerChoice: What information did you enter on the fake page?
-      npcResponse: I entered my email address and password. After that, I realised
-        that someone else might have gained access to my account.
+    - playerChoice: What happened after you entered the verification code?
+      npcResponse: "A little while later, I got a real notification saying my password
+        had been changed. That\u2019s when I realised the first alert must have been
+        fake."
       unlockedFactIds:
       - email_stolen
       - password_stolen
       - account_access
-    - playerChoice: You should have realised it was suspicious earlier.
-      npcResponse: Yeah... I know. I don't really want to talk about it anymore.
+    - playerChoice: You gave them both your password and the verification code?
+      npcResponse: I thought the code was part of securing the account. The whole
+        thing was designed to make me feel like I had to act immediately.
       unlockedFactIds:
       - account_access
+  - npcLine: The fake alert looked so similar to the real one. I only realised something
+      was wrong after they already had access.
+    choices:
+    - playerChoice: Be more careful next time, check for suspicious links or signs
+        before typing out your login details
+      npcResponse: Yeah... Ill look more carefully next time, thank you.
+      unlockedFactIds: []
   caseFileQuestions:
   - questionId: sign_alert_contact
     prompt: How did the scammer first contact the victim?

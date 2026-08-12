@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d9b320ba1bccb4f9fd7e7f2cb4c281, type: 3}
+  m_Name: SIM-Card Scam
+  m_EditorClassIdentifier: Assembly-CSharp::ScamCaseData
+  caseId: C02
+  queueNumber: A102
+  caseTitle: Failed Delivery Scam
+  scamType: Delivery Phishing Scam
+  victimName: Emily Wong
+  victimAge: 34
+  victimOccupation: Office Administrator
+  initialComplaint: I was approached by what I thought was a telecommunications company
+    offering a limited-time chance to earn $100 by signing up for a SIM card. I gave
+    them my NRIC details and a confirmation code, but I only realised later that
+    a SIM card had been created under my name.
+  lobbyNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
+  interviewNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
+  behaviourType: 2
+  interviewDecisions:
+  - npcLine: "Hi\u2026 I think someone used my details to register a SIM card. I
+      only found out after everything had already happened."
+    choices:
+    - playerChoice: What did the company offer you?
+      npcResponse: They said I could earn $100 if I signed up for a SIM card through
+        them. They made it sound like a limited-time promotion, so I didn't want
+        to miss the opportunity.
+      unlockedFactIds:
+      - fake_telco
+      - one_hundred_dollar_offer
+      - limited_time_offer
+    - playerChoice: How did you even fall for the scam?
+      npcResponse: 'The company offered me a "limited time" promotion of $100 and
+        i didn''t want to lose the chance to earn. I really thought it was genuine. '
+      unlockedFactIds:
+      - limited_time_offer
+  - npcLine: It started when I saw an offer from what looked like a telco company.
+      They said I could get $100 if I signed up for a SIM card through them
+    choices:
+    - playerChoice: That sounds tempting. What did they ask you to do to sign up?
+      npcResponse: "They asked for my NRIC details first. I thought that made sense
+        because SIM cards need to be registered under someone\u2019s identity."
+      unlockedFactIds:
+      - nric_details
+      - confirmation_code
+    - playerChoice: You gave them your NRIC just for $100?
+      npcResponse: "Yeah\u2026 I know it sounds bad now. At the time, the offer looked
+        legitimate, and they made it sound like I had to act quickly."
+      unlockedFactIds:
+      - confirmation_code
+  - npcLine: After that, I received a confirmation code on my phone, and they told
+      me to send it to them so they could complete the registration.
+    choices:
+    - playerChoice: Did the message say what the confirmation code was actually authorising?
+      npcResponse: "Not clearly. I thought it was just confirming that I was the
+        person signing up. I didn\u2019t realise a simple code could actually approve
+        the SIM registration."
+      unlockedFactIds:
+      - sim_card_created
+      - nric_details
+      - confirmation_code
+    - playerChoice: You should never send confirmation codes to strangers.
+      npcResponse: I know that now. But at the time, I thought I was dealing with
+        a real telco representative.
+      unlockedFactIds:
+      - sim_card_created
+  - npcLine: "I didn\u2019t realise anything was wrong until later, when I found
+      out a SIM card had been registered under my name."
+    choices:
+    - playerChoice: How did you discover that the SIM card had been created?
+      npcResponse: "I noticed something wasn\u2019t right and checked with the telco.
+        That\u2019s when I found out there was another SIM registered using my details."
+      unlockedFactIds:
+      - sim_card_created
+      - nric_details
+      - confirmation_code
+    - playerChoice: So you only checked after the damage was already done?
+      npcResponse: "Yeah\u2026 I didn\u2019t know there was anything to check before
+        that. I really thought I had just signed up for a normal promotion."
+      unlockedFactIds:
+      - sim_card_created
+  - npcLine: I just want to make sure the SIM is cancelled and that nobody can use
+      my identity for anything else.
+    choices:
+    - playerChoice: No worries, we will get in touch with the telco and ask them
+        to shut that SIM card down
+      npcResponse: Thank you so much, sorry for the trouble!
+      unlockedFactIds: []
+  caseFileQuestions:
+  - questionId: sim_card_contact
+    prompt: How was the victim first approached?
+    options:
+    - Fake telecommunications company offer
+    - Failed delivery SMS
+    - Bank security alert
+    - Police phone call
+    correctOptionIndex: 0
+    supportingFactId: fake_telco
+    explanation: The victim was approached by a fake telecommunications company offering
+      a promotion to sign up for a SIM card.
+  - questionId: sim_card_hook
+    prompt: What made the victim interested in the offer?
+    options:
+    - Chance to earn $100
+    - Free parcel delivery
+    - Investment returns
+    - Discounted insurance
+    correctOptionIndex: 0
+    supportingFactId: one_hundred_dollar_offer
+    explanation: The scammers tempted the victim with a chance to earn $100 by signing
+      up for a SIM card, presenting it as a limited-time opportunity.
+  - questionId: sim_card_information
+    prompt: What information did the victim provide?
+    options:
+    - NRIC details and a confirmation code
+    - Bank account password
+    - Social media password
+    - Credit card PIN
+    correctOptionIndex: 0
+    supportingFactId: nric_details
+    explanation: The victim provided her NRIC details and a confirmation code sent
+      to her phone.
+  - questionId: sim_card_result
+    prompt: What did the victim discover after providing the information?
+    options:
+    - A SIM card had been created under her name
+    - Her parcel was delivered
+    - Her bank account was closed
+    - Her phone was repaired
+    correctOptionIndex: 0
+    supportingFactId: sim_card_created
+    explanation: The victim only realised something was wrong after discovering that
+      a SIM card had been registered under her name.
+  howTheScamWorks: Scammers impersonate a telecommunications company and offer victims
+    a limited-time promotion, such as a chance to earn $100 for signing up for a
+    SIM card. The scammers collect the victim's NRIC details and may ask for a confirmation
+    code sent to the victim's phone. The information and code can then be used to
+    register a SIM card under the victim's name without their genuine understanding
+    or consent.
+  warningSigns: "\u2022 Unexpected offers from telecommunications companies. \n\u2022
+    Promises of easy money for signing up for a SIM card. \n\u2022 Limited-time offers
+    designed to create urgency. \n\u2022 Requests for NRIC details. \n\u2022 Requests
+    for confirmation codes or OTPs sent to your phone. \n\u2022 A SIM card being
+    registered under your name without your knowledge."
+  howToAvoid: Verify promotions directly through the telecommunications company's
+    official website or customer service channels. Do not share your NRIC details
+    or confirmation codes with unverified callers or companies. Never share an OTP
+    or confirmation code with someone else.
+  whatToDoIfVictim: Contact the telecommunications company immediately if you suspect
+    that a SIM card has been registered under your name. Ask them to investigate
+    and terminate any unauthorised line or account. Secure your other accounts if
+    you shared a confirmation code, monitor for suspicious activity and report the
+    scam to the relevant authorities.

@@ -22,16 +22,20 @@ MonoBehaviour:
   initialComplaint: Someone claiming to be a financial adviser contacted me about
     an investment opportunity that was supposedly offered through a major bank. They
     even showed me documents carrying the bank's branding.
-  lobbyNpcPrefab: {fileID: 8709656706217410242, guid: 410902c37f380a448b22e6aa088c344b, type: 3}
-  interviewNpcPrefab: {fileID: 8709656706217410242, guid: 410902c37f380a448b22e6aa088c344b, type: 3}
-  behaviourType: 2
+  lobbyNpcPrefab: {fileID: 6377121035299240574, guid: 0475e43ff63f5a54fbf6d294e5fa7322, type: 3}
+  interviewNpcPrefab: {fileID: 6377121035299240574, guid: 0475e43ff63f5a54fbf6d294e5fa7322, type: 3}
+  behaviourType: 1
   interviewDecisions:
-  - npcLine: The person introduced himself as a financial adviser representing a
-      bank. He told me about an investment with very attractive returns.
+  - npcLine: "I received this letter that looked like it came from my bank. It looked
+      official, so I didn\u2019t really question it at first."
+    choices: []
+  - npcLine: The letter said there was a problem with my account and that I needed
+      to verify some information urgently.
     choices:
-    - playerChoice: How did he prove that he was connected to the bank?
-      npcResponse: He sent me documents with the bank's logo, letterhead and contact
-        information. They looked official.
+    - playerChoice: What made the letter look genuine to you?
+      npcResponse: "\u201CIt had the bank\u2019s logo, proper formatting, and even
+        some of my personal details. It looked like the kind of letter a bank would
+        actually send."
       unlockedFactIds:
       - bank_impersonation
       - fake_letterhead
@@ -41,35 +45,44 @@ MonoBehaviour:
         all the details.
       unlockedFactIds:
       - bank_impersonation
-  - npcLine: He told me that the investment opportunity was only available for a
-      limited time and that I needed to act quickly.
+  - npcLine: The letter told me to scan a QR code and follow the instructions to
+      verify my account.
     choices:
-    - playerChoice: Did he promise any specific returns?
-      npcResponse: Yes. He said the investment could provide unusually high returns
-        and made it sound very safe because it was supposedly connected to the bank.
+    - playerChoice: What happened after you scanned the QR code?
+      npcResponse: "It opened a website that looked almost exactly like my bank\u2019s
+        login page. I entered my username and password because I thought I was verifying
+        my account."
       unlockedFactIds:
       - high_returns
       - limited_time_pressure
       - claimed_safe_investment
-    - playerChoice: High returns should obviously have been suspicious.
-      npcResponse: It sounded convincing at the time. He kept saying the opportunity
-        would expire soon.
+    - playerChoice: You entered your banking details from a QR code in a letter?
+      npcResponse: "Yes\u2026 because everything looked connected. The letter, the
+        logo, the website\u2014it all seemed official at the time."
       unlockedFactIds:
       - limited_time_pressure
-  - npcLine: Eventually he instructed me to transfer money for the investment.
+  - npcLine: "After that, I started receiving alerts about activity on my account
+      that I didn\u2019t recognise."
     choices:
-    - playerChoice: Where were you instructed to transfer the money?
-      npcResponse: The transfer details didn't actually match the bank itself. I
-        only realised that after I tried contacting the bank directly.
+    - playerChoice: What kind of activity did you notice?
+      npcResponse: "There were login alerts and a transaction I definitely didn\u2019t
+        make. That\u2019s when I contacted the bank directly."
       unlockedFactIds:
       - suspicious_transfer
       - not_official_bank_account
       - direct_bank_verification
-    - playerChoice: You transferred the money without calling the bank?
-      npcResponse: I believed the adviser was genuine. I don't want to keep going
-        over what I should have done differently.
+    - playerChoice: You should have contacted the bank before scanning anything.
+      npcResponse: "I know. I just didn\u2019t think it was fake until I saw the
+        transaction."
       unlockedFactIds:
       - suspicious_transfer
+  - npcLine: "I honestly thought the letter was real. If the bank logo and website
+      can both be copied, I don\u2019t know what I\u2019m supposed to trust anymore."
+    choices:
+    - playerChoice: Be more careful next time, always check with the bank before
+        doing anything potentially dangerous.
+      npcResponse: Yeah, i will. Thanks
+      unlockedFactIds: []
   caseFileQuestions:
   - questionId: bank_identity
     prompt: Who did the scammer claim to be?
