@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio.meta
 guid: 02f7b6ababe0ef446b8f4ad0360bc1de
 folderAsset: yes
+========
+guid: 40c115df14b2ba043a758318c3f0c399
+>>>>>>>> main:Assets/Scenes/Investigation.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

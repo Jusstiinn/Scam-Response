@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - CinemachineTarget
-  - NPC
   layers:
   - Default
   - TransparentFX
@@ -17,7 +16,7 @@ TagManager:
   - NotWalkable
   - Player
   - NPC
-  - Interactable
+  - 
   - 
   - 
   - 
