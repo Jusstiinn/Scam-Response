@@ -92,54 +92,9 @@ MonoBehaviour:
       my identity for anything else.
     choices:
     - playerChoice: No worries, we will get in touch with the telco and ask them
-        to shut that SIM card down
+        to shut that SIM card down. Be more vigilant next time!
       npcResponse: Thank you so much, sorry for the trouble!
       unlockedFactIds: []
-  caseFileQuestions:
-  - questionId: sim_card_contact
-    prompt: How was the victim first approached?
-    options:
-    - Fake telecommunications company offer
-    - Failed delivery SMS
-    - Bank security alert
-    - Police phone call
-    correctOptionIndex: 0
-    supportingFactId: fake_telco
-    explanation: The victim was approached by a fake telecommunications company offering
-      a promotion to sign up for a SIM card.
-  - questionId: sim_card_hook
-    prompt: What made the victim interested in the offer?
-    options:
-    - Chance to earn $100
-    - Free parcel delivery
-    - Investment returns
-    - Discounted insurance
-    correctOptionIndex: 0
-    supportingFactId: one_hundred_dollar_offer
-    explanation: The scammers tempted the victim with a chance to earn $100 by signing
-      up for a SIM card, presenting it as a limited-time opportunity.
-  - questionId: sim_card_information
-    prompt: What information did the victim provide?
-    options:
-    - NRIC details and a confirmation code
-    - Bank account password
-    - Social media password
-    - Credit card PIN
-    correctOptionIndex: 0
-    supportingFactId: nric_details
-    explanation: The victim provided her NRIC details and a confirmation code sent
-      to her phone.
-  - questionId: sim_card_result
-    prompt: What did the victim discover after providing the information?
-    options:
-    - A SIM card had been created under her name
-    - Her parcel was delivered
-    - Her bank account was closed
-    - Her phone was repaired
-    correctOptionIndex: 0
-    supportingFactId: sim_card_created
-    explanation: The victim only realised something was wrong after discovering that
-      a SIM card had been registered under her name.
   howTheScamWorks: Scammers impersonate a telecommunications company and offer victims
     a limited-time promotion, such as a chance to earn $100 for signing up for a
     SIM card. The scammers collect the victim's NRIC details and may ask for a confirmation
@@ -160,3 +115,5 @@ MonoBehaviour:
     and terminate any unauthorised line or account. Secure your other accounts if
     you shared a confirmation code, monitor for suspicious activity and report the
     scam to the relevant authorities.
+  caseFileTextSegments: []
+  caseFileDropdowns: []

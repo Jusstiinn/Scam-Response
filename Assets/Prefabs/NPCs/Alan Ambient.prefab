@@ -592,10 +592,10 @@ Animator:
   m_GameObject: {fileID: 1989203270167059356}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a95310940dc2dd749aa3ee0bc94ae11b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4757142f2d3ac994fb57ff8a52889b7c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -637,7 +637,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f923d5073c3854d4caa01510efff83d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcAnimatorBridge
-  animator: {fileID: 7926004601815775507}
+  animator: {fileID: 1612812107231126522}
   navAgent: {fileID: 443626843796449469}
   speedParameter: Speed
   sitTrigger: Sit

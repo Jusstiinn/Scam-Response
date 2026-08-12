@@ -342,7 +342,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: Speed
-    m_EventTreshold: 2.5
+    m_EventTreshold: 2.6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1767350417689259631}
   m_Solo: 0

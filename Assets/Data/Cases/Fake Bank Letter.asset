@@ -83,51 +83,6 @@ MonoBehaviour:
         doing anything potentially dangerous.
       npcResponse: Yeah, i will. Thanks
       unlockedFactIds: []
-  caseFileQuestions:
-  - questionId: bank_identity
-    prompt: Who did the scammer claim to be?
-    options:
-    - Bank financial adviser
-    - Delivery driver
-    - Police officer
-    - University employee
-    correctOptionIndex: 0
-    supportingFactId: bank_impersonation
-    explanation: The scammer impersonated a financial adviser connected to a legitimate
-      bank.
-  - questionId: bank_proof
-    prompt: What was used to make the investment appear legitimate?
-    options:
-    - Fake bank letters and branding
-    - Delivery receipt
-    - Government identification card
-    - Security alert email
-    correctOptionIndex: 0
-    supportingFactId: fake_letterhead
-    explanation: Fake bank letters, logos and branding were used to make the fraudulent
-      investment opportunity appear genuine.
-  - questionId: bank_pressure
-    prompt: Which tactic encouraged the victim to act quickly?
-    options:
-    - Limited-time investment opportunity
-    - Parcel cancellation
-    - Account password expiry
-    - Job interview deadline
-    correctOptionIndex: 0
-    supportingFactId: limited_time_pressure
-    explanation: The scammer created urgency by claiming that the investment opportunity
-      would only be available for a limited time.
-  - questionId: bank_payment
-    prompt: What was suspicious about the payment instructions?
-    options:
-    - Money was not being transferred to an official bank account
-    - Payment had to be made at a supermarket
-    - The investment was completely free
-    - Payment had to be made using game credits
-    correctOptionIndex: 0
-    supportingFactId: not_official_bank_account
-    explanation: The transfer details did not belong to the legitimate bank being
-      represented, which was a major warning sign.
   howTheScamWorks: Scammers impersonate financial advisers or representatives of
     legitimate banks and offer fake investment opportunities. They may use fake letters,
     logos and other bank branding to make the offer appear genuine before convincing
@@ -142,3 +97,5 @@ MonoBehaviour:
   whatToDoIfVictim: Contact the relevant bank immediately if money has already been
     transferred. Preserve messages, documents and transaction records and report
     the incident through the appropriate official channels.
+  caseFileTextSegments: []
+  caseFileDropdowns: []

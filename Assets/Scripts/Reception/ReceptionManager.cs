@@ -149,9 +149,7 @@ public class ReceptionManager : MonoBehaviour
                 npcSpawnPoint.rotation
             );
 
-        currentNpc =
-            npcObject.GetComponent<
-                ReceptionNpcController>();
+        currentNpc = npcObject.GetComponentInChildren<ReceptionNpcController>();
 
         if (currentNpc == null)
         {

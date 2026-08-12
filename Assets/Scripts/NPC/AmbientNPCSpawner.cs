@@ -579,8 +579,12 @@ public class AmbientNpcExit : MonoBehaviour
         maxWaypoints =
             maximumWaypoints;
 
-        navAgent =
-            GetComponent<NpcNavAgent>();
+        navAgent = GetComponent<NpcNavAgent>();
+
+        if (navAgent == null)
+        {
+            navAgent = GetComponentInChildren<NpcNavAgent>();
+        }
 
 
         if (navAgent == null)
