@@ -5,6 +5,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class NpcNavAgent : MonoBehaviour
 {
+    public void SetSpeed(float speed)
+{
+    if (agent == null)
+        return;
+
+    agent.speed = speed;
+}
     private NavMeshAgent agent;
     private Action arrival;
     public float CurrentSpeed => agent != null ? agent.velocity.magnitude : 0f;
