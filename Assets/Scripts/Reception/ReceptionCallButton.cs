@@ -6,7 +6,7 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
     [SerializeField] private PressButtonAnimation physicalButton;
 
     public string InteractionPrompt =>
-        "Press E to call the next case number";
+        "Press E to call the next number";
 
     public bool CanInteract =>
         GameManager.Instance != null &&

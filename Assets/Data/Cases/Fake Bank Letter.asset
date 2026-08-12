@@ -16,15 +16,17 @@ MonoBehaviour:
   queueNumber: A103
   caseTitle: Fake Bank Letter
   scamType: Investment Scam
-  victimName: Daniel Lee
-  victimAge: 46
+  victimName: Alice Lee
+  victimAge: 42
   victimOccupation: Operations Manager
-  initialComplaint: Someone claiming to be a financial adviser contacted me about
-    an investment opportunity that was supposedly offered through a major bank. They
-    even showed me documents carrying the bank's branding.
+  initialComplaint: Hi, im Alice. Someone claiming to be a financial adviser contacted
+    me about an investment opportunity that was supposedly offered through a major
+    bank. They even showed me documents carrying the bank's branding.
   lobbyNpcPrefab: {fileID: 6377121035299240574, guid: 0475e43ff63f5a54fbf6d294e5fa7322, type: 3}
   interviewNpcPrefab: {fileID: 6377121035299240574, guid: 0475e43ff63f5a54fbf6d294e5fa7322, type: 3}
   behaviourType: 1
+  receptionDialogue: Hi... thanks for seeing me. I received a security message about
+    my bank account, and I'm worried someone may have gotten access to it.
   interviewDecisions:
   - npcLine: "I received this letter that looked like it came from my bank. It looked
       official, so I didn\u2019t really question it at first."

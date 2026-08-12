@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class InterviewSceneController : MonoBehaviour
 {
-    [SerializeField] private Transform npcSpawnPoint;
     [SerializeField] private Transform npcChairPoint;
     [SerializeField] private PlayerConversationController playerConversationController;
     [SerializeField] private Transform playerChairPoint;
@@ -15,19 +14,22 @@ public class InterviewSceneController : MonoBehaviour
         if (GameManager.Instance == null)
         {
             Debug.LogError(
-                "InterviewSceneController: GameManager.Instance is NULL. " +
-                "Start the game from the Lobby scene.", this);
+                "InterviewSceneController: GameManager.Instance is NULL.",
+                this
+            );
+
             return;
         }
 
-        ScamCaseData data = GameManager.Instance.CurrentCase;
+        ScamCaseData data =
+            GameManager.Instance.CurrentCase;
 
         if (data == null)
         {
             Debug.LogError(
-                "InterviewSceneController: CurrentCase is NULL. " +
-                "A case must be started in the Lobby before entering the Interview scene.",
-                this);
+                "InterviewSceneController: CurrentCase is NULL.",
+                this
+            );
 
             return;
         }
@@ -40,18 +42,8 @@ public class InterviewSceneController : MonoBehaviour
         if (prefab == null)
         {
             Debug.LogError(
-                "InterviewSceneController: Both interviewNpcPrefab and lobbyNpcPrefab are missing for case: " +
+                "InterviewSceneController: No NPC prefab assigned for " +
                 data.caseTitle,
-                this
-            );
-
-            return;
-        }
-
-        if (npcSpawnPoint == null)
-        {
-            Debug.LogError(
-                "InterviewSceneController: Npc Spawn Point is not assigned.",
                 this
             );
 
@@ -68,49 +60,41 @@ public class InterviewSceneController : MonoBehaviour
             return;
         }
 
+        // Spawn NPC directly at the chair.
         GameObject go = Instantiate(
             prefab,
-            npcSpawnPoint.position,
-            npcSpawnPoint.rotation
+            npcChairPoint.position,
+            npcChairPoint.rotation
         );
 
-        NpcNavAgent nav =
-            go.GetComponent<NpcNavAgent>();
-
+        // Find animator bridge anywhere inside the prefab.
         NpcAnimatorBridge anim =
-            go.GetComponent<NpcAnimatorBridge>();
+            go.GetComponentInChildren<NpcAnimatorBridge>(true);
 
-        if (nav == null)
+        if (anim != null)
         {
-            Debug.LogError(
-                prefab.name +
-                " does not contain NpcNavAgent.",
+            anim.PlaySit();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "InterviewSceneController: Spawned NPC has no NpcAnimatorBridge.",
                 go
             );
-
-            Destroy(go);
-            return;
         }
 
-        nav.MoveTo(
-            npcChairPoint,
-            () =>
-            {
-                anim?.PlaySit();
-
-                if (playerChairInteraction != null)
-                {
-                    playerChairInteraction.SetAvailable(true);
-                }
-                else
-                {
-                    Debug.LogError(
-                        "InterviewSceneController: Player Chair Interaction is not assigned.",
-                        this
-                    );
-                }
-            }
-        );
+        // Player can now interact with their chair.
+        if (playerChairInteraction != null)
+        {
+            playerChairInteraction.SetAvailable(true);
+        }
+        else
+        {
+            Debug.LogError(
+                "InterviewSceneController: Player Chair Interaction is not assigned.",
+                this
+            );
+        }
     }
     public void BeginInterview()
     {

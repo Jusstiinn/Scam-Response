@@ -17,14 +17,17 @@ MonoBehaviour:
   caseTitle: Sign-in Alert Mimic
   scamType: Phishing Scam
   victimName: Alan Tan
-  victimAge: 31
+  victimAge: 36
   victimOccupation: Manager
-  initialComplaint: I received a security alert saying that someone had accessed
-    my account. I followed the instructions in the email because I was worried that
-    my account had been compromised.
+  initialComplaint: Hello, im Alan, I received a security alert saying that someone
+    had accessed my account. I followed the instructions in the email because I was
+    worried that my account had been compromised.
   lobbyNpcPrefab: {fileID: 8067685855151852537, guid: 9e485c1c619baa7429b4ae17a9c7b301, type: 3}
   interviewNpcPrefab: {fileID: 8067685855151852537, guid: 9e485c1c619baa7429b4ae17a9c7b301, type: 3}
   behaviourType: 0
+  receptionDialogue: Hi. I received a Google sign-in alert saying someone had tried
+    to access my account. I followed the instructions in the message, but afterwards
+    I started noticing activity I didn't recognise.
   interviewDecisions:
   - npcLine: I got a sign-in alert saying someone had accessed my account from another
       device. I panicked because I thought someone was already inside my account.
@@ -83,50 +86,6 @@ MonoBehaviour:
         before typing out your login details
       npcResponse: Yeah... Ill look more carefully next time, thank you.
       unlockedFactIds: []
-  caseFileQuestions:
-  - questionId: sign_alert_contact
-    prompt: How did the scammer first contact the victim?
-    options:
-    - Security alert email
-    - Phone call
-    - Social media message
-    - Delivery SMS
-    correctOptionIndex: 0
-    supportingFactId: urgent_security_warning
-    explanation: The victim received a phishing email designed to imitate an official
-      security alert.
-  - questionId: sign_alert_warning
-    prompt: Which feature made the email appear legitimate?
-    options:
-    - Google branding and security warning
-    - A government logo
-    - A delivery tracking number
-    - A bank investment letter
-    correctOptionIndex: 0
-    supportingFactId: google_logo
-    explanation: The scam email copied legitimate branding and security language
-      to make the message appear trustworthy.
-  - questionId: sign_alert_method
-    prompt: Where did the email link send the victim?
-    options:
-    - Fake login page
-    - Official bank website
-    - Delivery tracking website
-    - Government portal
-    correctOptionIndex: 0
-    supportingFactId: fake_login_page
-    explanation: The phishing link redirected the victim to a fake login page designed
-      to steal account credentials.
-  - questionId: sign_alert_stolen
-    prompt: What information was the scammer attempting to obtain?
-    options:
-    - Email and password
-    - Delivery address only
-    - School records
-    - Passport photograph
-    correctOptionIndex: 0
-    supportingFactId: password_stolen
-    explanation: The fake login page was designed to capture the victim's login details.
   howTheScamWorks: Scammers send phishing emails designed to look like official security
     alerts. The message usually creates urgency by claiming that suspicious activity
     has been detected. Victims are encouraged to click a link that leads to a fake
@@ -142,3 +101,5 @@ MonoBehaviour:
   whatToDoIfVictim: Immediately change the affected account password, enable additional
     security features where available, review recent account activity and contact
     the relevant service provider if unauthorised access is detected.
+  caseFileTextSegments: []
+  caseFileDropdowns: []

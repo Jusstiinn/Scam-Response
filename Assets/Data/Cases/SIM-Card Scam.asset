@@ -17,15 +17,18 @@ MonoBehaviour:
   caseTitle: Failed Delivery Scam
   scamType: Delivery Phishing Scam
   victimName: Emily Wong
-  victimAge: 34
+  victimAge: 28
   victimOccupation: Office Administrator
-  initialComplaint: I was approached by what I thought was a telecommunications company
-    offering a limited-time chance to earn $100 by signing up for a SIM card. I gave
-    them my NRIC details and a confirmation code, but I only realised later that
-    a SIM card had been created under my name.
+  initialComplaint: HI... im Emily, I was approached by what I thought was a telecommunications
+    company offering a limited-time chance to earn $100 by signing up for a SIM card.
+    I gave them my NRIC details and a confirmation code, but I only realised later
+    that a SIM card had been created under my name.
   lobbyNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
   interviewNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
   behaviourType: 2
+  receptionDialogue: Hi, im Emily, I responded to an offer from what I thought was
+    a telco company. I gave them my NRIC details and a confirmation code, and later
+    I found out a SIM card had been created under my name.
   interviewDecisions:
   - npcLine: "Hi\u2026 I think someone used my details to register a SIM card. I
       only found out after everything had already happened."

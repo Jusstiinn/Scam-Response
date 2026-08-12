@@ -32,6 +32,11 @@ public class ScamCaseData : ScriptableObject
     public GameObject interviewNpcPrefab;
     public NpcBehaviourType behaviourType;
 
+    [Header("Reception Dialogue")]
+
+    [TextArea(2, 5)]
+    public string receptionDialogue;
+
     [Header("Interview")]
     public InterviewDecisionData[] interviewDecisions;
 
