@@ -560,6 +560,7 @@ GameObject:
   - component: {fileID: 5800403877242132932}
   - component: {fileID: 8546804676016280255}
   - component: {fileID: 5704927238655514560}
+  - component: {fileID: 776029421228486521}
   m_Layer: 0
   m_Name: AlanNPC
   m_TagString: NPC
@@ -577,7 +578,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.003578186, y: 0, z: -0.01597166}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5987166269534273717}
@@ -708,6 +709,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508d93f900a15414494059bea2b86bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReceptionNpcInteraction
+--- !u!54 &776029421228486521
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989203270167059356}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2135121668910343323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,7 +2226,7 @@ GameObject:
   - component: {fileID: 1136036226246110857}
   m_Layer: 0
   m_Name: Alan
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

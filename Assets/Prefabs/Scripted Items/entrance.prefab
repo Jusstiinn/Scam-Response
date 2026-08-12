@@ -338,4 +338,4 @@ MonoBehaviour:
   slidingDoor: {fileID: 6597193055016279407}
   playerTag: Player
   npcTag: NPC
-  closeDelay: 3
+  closeDelay: 2.2

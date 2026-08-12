@@ -71591,10 +71591,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 6204385008408402233, guid: 0c4f5321045a9c944a1f4b4ed92e26a4, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7297feb43b802804fb3923ac1d1041bf, type: 2}
     - target: {fileID: 9074047385173369474, guid: 0c4f5321045a9c944a1f4b4ed92e26a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.136761
@@ -72173,10 +72169,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ReceptionCallButton
       objectReference: {fileID: 0}
-    - target: {fileID: 4363574625605274947, guid: 9fa83ebd5c96fc54ab94d65b84c7f747, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6943844146308445573, guid: 9fa83ebd5c96fc54ab94d65b84c7f747, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.907007
@@ -72221,10 +72213,6 @@ PrefabInstance:
       propertyPath: receptionManager
       value: 
       objectReference: {fileID: 226138702}
-    - target: {fileID: 8971708616155380529, guid: 9fa83ebd5c96fc54ab94d65b84c7f747, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73735,10 +73723,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5382371730189551398, guid: 2748569df226ca349897facfe3740130, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146788062259645497, guid: 2748569df226ca349897facfe3740130, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813845533703479332, guid: 2748569df226ca349897facfe3740130, type: 3}
