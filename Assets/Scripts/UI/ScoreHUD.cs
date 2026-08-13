@@ -63,6 +63,18 @@ public class ScoreHUD : MonoBehaviour
         }
     }
 
+    public void HideScoreHUD()
+    {
+        StopAllCoroutines();
+
+        animating = false;
+
+        if (scoreRoot != null)
+        {
+            scoreRoot.gameObject.SetActive(false);
+        }
+    }
+
     public void AnimateScore(
         int previousScore,
         int newScore,

@@ -5,26 +5,73 @@ using UnityEngine.UI;
 
 public class FinalSummaryUI : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private GameObject root;
-    [SerializeField] private TMP_Text totalScoreText, breakdownText;
-    [SerializeField] private Button restartButton;
-    private void Awake() { restartButton.onClick.AddListener(Restart); root.SetActive(false); }
+
+    [Header("Text")]
+    [SerializeField] private TMP_Text totalScoreText;
+    [SerializeField] private TMP_Text breakdownText;
+
+    [Header("Button")]
+    [SerializeField] private Button continueButton;
+
+    [Header("Next Screen")]
+    [SerializeField] private ThankYouUI thankYouUI;
+
+    private void Awake()
+    {
+        continueButton.onClick.AddListener(Continue);
+
+        root.SetActive(false);
+    }
+
     public void Show()
     {
-        root.SetActive(true); totalScoreText.text = $"Total Score: {GameManager.Instance.GetTotalScore()}";
-        StringBuilder b = new(); foreach (var r in GameManager.Instance.CompletedResults) b.AppendLine($"{r.caseTitle}: {r.score} points, {r.incorrectAnswers} incorrect"); breakdownText.text = b.ToString();
-        Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
+        // Hide the persistent top-right score HUD
+        if (ScoreHUD.Instance != null)
+        {
+            ScoreHUD.Instance.HideScoreHUD();
+        }
+
+        root.SetActive(true);
+
+        totalScoreText.text =
+            $"Total Score: {GameManager.Instance.GetTotalScore()}";
+
+        StringBuilder b = new();
+
+        foreach (
+            var result
+            in GameManager.Instance.CompletedResults
+        )
+        {
+            b.AppendLine(
+                $"{result.caseTitle}: " +
+                $"{result.score} points, " +
+                $"{result.incorrectAnswers} incorrect"
+            );
+        }
+
+        breakdownText.text = b.ToString();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
-    private void Restart()
+
+    private void Continue()
     {
-        GameManager.Instance.ResetGame();
+        root.SetActive(false);
 
-        Cursor.lockState =
-            CursorLockMode.Locked;
-
-        Cursor.visible = false;
-
-        SceneTransitionManager.Instance
-            .LoadScene("Lobby");
+        if (thankYouUI != null)
+        {
+            thankYouUI.Show();
+        }
+        else
+        {
+            Debug.LogError(
+                "FinalSummaryUI: ThankYouUI has not been assigned.",
+                this
+            );
+        }
     }
 }
