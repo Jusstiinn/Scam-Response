@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1717140388596828227}
   - component: {fileID: 4145638879095117085}
   - component: {fileID: 907576692998121785}
+  - component: {fileID: 1338996731618930255}
+  - component: {fileID: 1917448915592372990}
   m_Layer: 0
   m_Name: Static door
   m_TagString: Untagged
@@ -113,3 +115,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8542252824845852335, guid: 74163e2d774e1c94d9bce5ba8819db33, type: 3}
+--- !u!114 &1338996731618930255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575081632644864646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64294e70bc700704895d683469e6b4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveHighlightTarget
+  objectiveID: InterviewDoor
+  targetRenderers:
+  - {fileID: 4145638879095117085}
+--- !u!114 &1917448915592372990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575081632644864646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bebfcdf1ac9c5947abc5ec942ddd705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InterviewDoorSceneLoader
+  interviewSceneName: InterviewRoom
