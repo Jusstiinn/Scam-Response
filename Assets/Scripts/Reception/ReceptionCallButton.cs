@@ -4,6 +4,11 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private ReceptionManager receptionManager;
     [SerializeField] private PressButtonAnimation physicalButton;
+
+    [Header("Button VFX")]
+    [SerializeField] private GameObject buttonVfxPrefab;
+    [SerializeField] private Transform vfxSpawnPoint;
+    [SerializeField] private float vfxLifetime = 2f;
     private bool glowed = false;
 
     public string InteractionPrompt =>
@@ -21,6 +26,9 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
         // Play physical red button press animation.
         physicalButton?.Press();
 
+        // Play button VFX.
+        PlayButtonVfx();
+
         if (!glowed)
         {
             GetComponent<ObjectiveHighlightTarget>()?
@@ -30,5 +38,24 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
 
         // Call the current queue number.
         receptionManager?.CallCurrentNumber();
+    }
+
+    private void PlayButtonVfx()
+    {
+        if (buttonVfxPrefab == null)
+            return;
+
+        Transform spawn =
+            vfxSpawnPoint != null
+                ? vfxSpawnPoint
+                : transform;
+
+        GameObject vfx = Instantiate(
+            buttonVfxPrefab,
+            spawn.position,
+            spawn.rotation
+        );
+
+        Destroy(vfx, vfxLifetime);
     }
 }

@@ -31,8 +31,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3002969242058077293}
   - {fileID: 8437659255683451544}
   - {fileID: 751736855259285236}
+  - {fileID: 8938560613981767801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3037636327538096982
@@ -65,6 +67,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReceptionCallButton
   receptionManager: {fileID: 0}
   physicalButton: {fileID: 3037636327538096982}
+  buttonVfxPrefab: {fileID: 6761466289188383549, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+  vfxSpawnPoint: {fileID: 8938560613981767801}
+  vfxLifetime: 2
+--- !u!1 &1507805958808632389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8938560613981767801}
+  m_Layer: 0
+  m_Name: VFX point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8938560613981767801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507805958808632389}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.12525918, z: -0, w: 0.9921241}
+  m_LocalPosition: {x: -0.04, y: 0.043, z: -0.001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6943844146308445573}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2847015588627608092
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,3 +329,65 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3191843991455854740, guid: 8c619d1d4488ce64f8538114f6fb0896, type: 3}
+--- !u!1001 &786723559102327724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6943844146308445573}
+    m_Modifications:
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03779927
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05114615
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0006037309
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9921241
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.12525918
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761466289188383549, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+      propertyPath: m_Name
+      value: Button_Spark_VFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+--- !u!4 &3002969242058077293 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2542194531851444161, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
+  m_PrefabInstance: {fileID: 786723559102327724}
+  m_PrefabAsset: {fileID: 0}
