@@ -11,8 +11,33 @@ public class CaseResultUI : MonoBehaviour
     private void Awake() { continueButton.onClick.AddListener(Continue); root.SetActive(false); }
     public void Show(ScamCaseData data, int score, int wrong)
     {
-        root.SetActive(true); titleText.text = $"Case Complete: {data.caseTitle}"; scoreText.text = $"Score: {score}"; incorrectText.text = $"Incorrect Answers: {wrong}";
-        howItWorksText.text = data.howTheScamWorks; warningSignsText.text = data.warningSigns; preventionText.text = data.howToAvoid; victimActionText.text = data.whatToDoIfVictim;
+        root.SetActive(true);
+
+        titleText.text =
+            $"Case Complete: {data.caseTitle}";
+
+        scoreText.text =
+            $"Case Score: {score}";
+
+        incorrectText.text =
+            $"Incorrect Answers: {wrong}";
+
+        howItWorksText.text =
+            data.howTheScamWorks;
+
+        warningSignsText.text =
+            data.warningSigns;
+
+        preventionText.text =
+            data.howToAvoid;
+
+        victimActionText.text =
+            data.whatToDoIfVictim;
+
+        Cursor.lockState =
+            CursorLockMode.None;
+
+        Cursor.visible = true;
     }
     private void Continue()
     {

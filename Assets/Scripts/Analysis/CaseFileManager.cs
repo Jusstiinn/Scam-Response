@@ -199,14 +199,50 @@ public class CaseFileManager : MonoBehaviour
 
         root.SetActive(false);
 
-        // Restore player and HUD
+        //Restore FPS movement/HUD.
         ExitAnalysisMode();
 
-        resultUI.Show(
-            activeCase,
-            score,
-            wrong
-        );
+        //Calculate score transition.
+        int previousTotal =
+            GameManager.Instance.TotalScore;
+
+        GameManager.Instance
+            .AddCurrentCaseScoreToTotal();
+
+        int newTotal =
+            GameManager.Instance.TotalScore;
+
+        /*
+        * Animate score first.
+        * Result screen appears afterwards.
+        */
+        if (ScoreHUD.Instance != null)
+        {
+            ScoreHUD.Instance.AnimateScore(
+                previousTotal,
+                newTotal,
+                () =>
+                {
+                    resultUI.Show(
+                        activeCase,
+                        score,
+                        wrong
+                    );
+                }
+            );
+        }
+        else
+        {
+            /*
+            * Safety fallback if ScoreHUD
+            * wasn't added to the scene.
+            */
+            resultUI.Show(
+                activeCase,
+                score,
+                wrong
+            );
+        }
     }
 
         private void EnterAnalysisMode()

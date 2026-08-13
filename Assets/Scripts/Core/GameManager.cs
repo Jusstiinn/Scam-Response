@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GamePhase CurrentPhase { get; private set; } = GamePhase.Reception;
     public int CurrentCaseScore { get; private set; }
     public int CurrentIncorrectAnswers { get; private set; }
+    public int TotalScore { get; private set; }
     public IReadOnlyList<CompletedCaseResult> CompletedResults => completedResults;
 
     private readonly HashSet<string> unlockedFacts = new();
@@ -46,10 +47,20 @@ public class GameManager : MonoBehaviour
     public void UnlockFact(string factId) { if (!string.IsNullOrWhiteSpace(factId)) unlockedFacts.Add(factId); }
     public bool IsFactUnlocked(string factId) => unlockedFacts.Contains(factId);
 
-    public void SetCaseScore(int score, int incorrectAnswers)
+    public void SetCaseScore(
+        int score,
+        int incorrectAnswers)
     {
-        CurrentCaseScore = Mathf.Max(0, score);
-        CurrentIncorrectAnswers = Mathf.Max(0, incorrectAnswers);
+        CurrentCaseScore =
+            Mathf.Max(0, score);
+
+        CurrentIncorrectAnswers =
+            Mathf.Max(0, incorrectAnswers);
+    }
+
+    public void AddCurrentCaseScoreToTotal()
+    {
+        TotalScore += CurrentCaseScore;
     }
 
     public void CompleteCurrentCase()
@@ -69,6 +80,28 @@ public class GameManager : MonoBehaviour
     }
 
     public bool IsCaseCompleted(ScamCaseData data) => data != null && completedCaseIds.Contains(data.caseId);
-    public int GetTotalScore() { int total = 0; foreach (var r in completedResults) total += r.score; return total; }
-    public void ResetGame() { CurrentCase = null; unlockedFacts.Clear(); completedCaseIds.Clear(); completedResults.Clear(); CurrentPhase = GamePhase.Reception; }
+    public int GetTotalScore()
+    {
+        return TotalScore;
+    }
+    public void ResetGame()
+    {
+        CurrentCase = null;
+
+        unlockedFacts.Clear();
+        completedCaseIds.Clear();
+        completedResults.Clear();
+
+        CurrentCaseScore = 0;
+        CurrentIncorrectAnswers = 0;
+        TotalScore = 0;
+
+        CurrentPhase =
+            GamePhase.Reception;
+
+        if (ScoreHUD.Instance != null)
+        {
+            ScoreHUD.Instance.ResetScoreHUD();
+        }
+    }
 }
