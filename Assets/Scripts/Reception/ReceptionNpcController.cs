@@ -20,6 +20,7 @@ public class ReceptionNpcController : MonoBehaviour
     private NormalResponderBehaviour normalBehaviour;
     private AnxiousRushBehaviour anxiousBehaviour;
     private DoesNotRespondBehaviour noResponseBehaviour;
+    private IReceptionNpcBehaviour activeBehaviour;
 
         public void Configure(
         ScamCaseData data,
@@ -80,52 +81,77 @@ public class ReceptionNpcController : MonoBehaviour
 
     private void SetupBehaviour()
     {
-        if (normalBehaviour != null)
-            normalBehaviour.enabled = false;
+        activeBehaviour = null;
 
-        if (anxiousBehaviour != null)
-            anxiousBehaviour.enabled = false;
-
-        if (noResponseBehaviour != null)
-            noResponseBehaviour.enabled = false;
+        if (CaseData == null)
+        {
+            Debug.LogError(
+                "ReceptionNpcController: CaseData is missing.",
+                this
+            );
+            return;
+        }
 
         switch (CaseData.behaviourType)
         {
             case NpcBehaviourType.NormalResponder:
+            {
+                NormalResponderBehaviour behaviour =
+                    GetComponent<NormalResponderBehaviour>();
 
-                if (normalBehaviour != null)
+                if (behaviour == null)
                 {
-                    normalBehaviour.enabled = true;
-                    normalBehaviour.Initialize(this);
-                    normalBehaviour.Begin();
+                    behaviour =
+                        gameObject.AddComponent<NormalResponderBehaviour>();
                 }
 
+                activeBehaviour = behaviour;
                 break;
-
+            }
 
             case NpcBehaviourType.AnxiousRush:
+            {
+                AnxiousRushBehaviour behaviour =
+                    GetComponent<AnxiousRushBehaviour>();
 
-                if (anxiousBehaviour != null)
+                if (behaviour == null)
                 {
-                    anxiousBehaviour.enabled = true;
-                    anxiousBehaviour.Initialize(this);
-                    anxiousBehaviour.Begin();
+                    behaviour =
+                        gameObject.AddComponent<AnxiousRushBehaviour>();
                 }
 
+                activeBehaviour = behaviour;
                 break;
-
+            }
 
             case NpcBehaviourType.DoesNotRespond:
+            {
+                DoesNotRespondBehaviour behaviour =
+                    GetComponent<DoesNotRespondBehaviour>();
 
-                if (noResponseBehaviour != null)
+                if (behaviour == null)
                 {
-                    noResponseBehaviour.enabled = true;
-                    noResponseBehaviour.Initialize(this);
-                    noResponseBehaviour.Begin();
+                    behaviour =
+                        gameObject.AddComponent<DoesNotRespondBehaviour>();
                 }
 
+                activeBehaviour = behaviour;
                 break;
+            }
         }
+
+        if (activeBehaviour == null)
+        {
+            Debug.LogError(
+                "ReceptionNpcController: Could not create behaviour for " +
+                CaseData.behaviourType,
+                this
+            );
+            return;
+        }
+
+        activeBehaviour.Initialize(this);
+        activeBehaviour.Begin();
     }
 
         public void MoveToReception()
