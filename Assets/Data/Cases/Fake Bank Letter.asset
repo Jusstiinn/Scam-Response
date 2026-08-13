@@ -136,16 +136,16 @@ MonoBehaviour:
   - fieldId: 'information_provided '
     options:
     - Instructions to visit a bank branch
-    - A QR code or link directing him to a fake banking website
+    - A QR code or link directing her to a fake banking website
     - A legitimate cheque
     - A customer-service phone number only
     correctOptionIndex: 1
     supportingFactId: fake_bank_link
   - fieldId: 
     options:
-    - Only his mailing address
-    - His employment information
-    - His banking login credentials and verification information
+    - Only her mailing address
+    - Her employment information
+    - Her banking login credentials and verification information
     - A parcel tracking number
     correctOptionIndex: 2
     supportingFactId: bank_credentials

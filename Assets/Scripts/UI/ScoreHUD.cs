@@ -36,9 +36,7 @@ public class ScoreHUD : MonoBehaviour
         }
 
         Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-
+        
         if (scoreRoot != null)
         {
             scoreRoot.gameObject.SetActive(false);

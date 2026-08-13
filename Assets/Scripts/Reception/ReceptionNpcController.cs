@@ -13,14 +13,40 @@ public class ReceptionNpcController : MonoBehaviour
     [SerializeField] private float calledSpeed = 3.5f;
     [SerializeField] private float followSpeed = 2.5f;
     public ScamCaseData CaseData { get; private set; }
+    public bool HasReachedReception { get; private set; }
     private Transform idlePoint, receptionPoint, exitPoint, followTarget;
     private Vector3 spawnPosition; private Quaternion spawnRotation;
     private Coroutine timeoutRoutine, followRoutine;
+    private NormalResponderBehaviour normalBehaviour;
+    private AnxiousRushBehaviour anxiousBehaviour;
+    private DoesNotRespondBehaviour noResponseBehaviour;
 
-    public void Configure(ScamCaseData data, Transform idle, Transform reception, Transform exit, Transform follow)
+        public void Configure(
+        ScamCaseData data,
+        Transform idle,
+        Transform reception,
+        Transform exit,
+        Transform follow)
     {
-        CaseData = data; idlePoint = idle; receptionPoint = reception; exitPoint = exit; followTarget = follow;
-        spawnPosition = transform.position; spawnRotation = transform.rotation; interaction.Configure(this); BeginBehaviour();
+        CaseData = data;
+
+        idlePoint = idle;
+        receptionPoint = reception;
+        exitPoint = exit;
+        followTarget = follow;
+
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
+
+        interaction.Configure(this);
+
+        navigation.SetSpeed(normalSpeed);
+
+        interaction.SetMode(
+            ReceptionNpcInteractionMode.Disabled
+        );
+
+        SetupBehaviour();
     }
         private void BeginBehaviour()
     {
@@ -39,26 +65,179 @@ public class ReceptionNpcController : MonoBehaviour
             NpcBehaviourType.DoesNotRespond ? StartUnresponsive : StartNormal);
         }
     }
-    private void StartNormal() { interaction.SetMode(ReceptionNpcInteractionMode.Disabled); StartTimeout(); }
-    private void StartUnresponsive() { interaction.SetMode(ReceptionNpcInteractionMode.FindVictim); StartTimeout(); }
-    private void EnableFollowing() { interaction.SetMode(ReceptionNpcInteractionMode.BeginFollowing); StartTimeout(); }
-        public void OnNumberCalled()
-    {
-        StopTimeout();
 
-        if (CaseData.behaviourType == NpcBehaviourType.DoesNotRespond)
+    private void Awake()
+    {
+    normalBehaviour =
+        GetComponentInChildren<NormalResponderBehaviour>();
+
+    anxiousBehaviour =
+        GetComponentInChildren<AnxiousRushBehaviour>();
+
+    noResponseBehaviour =
+        GetComponentInChildren<DoesNotRespondBehaviour>();
+    }
+
+    private void SetupBehaviour()
+    {
+        if (normalBehaviour != null)
+            normalBehaviour.enabled = false;
+
+        if (anxiousBehaviour != null)
+            anxiousBehaviour.enabled = false;
+
+        if (noResponseBehaviour != null)
+            noResponseBehaviour.enabled = false;
+
+        switch (CaseData.behaviourType)
         {
-            interaction.SetMode(ReceptionNpcInteractionMode.FindVictim);
+            case NpcBehaviourType.NormalResponder:
+
+                if (normalBehaviour != null)
+                {
+                    normalBehaviour.enabled = true;
+                    normalBehaviour.Initialize(this);
+                    normalBehaviour.Begin();
+                }
+
+                break;
+
+
+            case NpcBehaviourType.AnxiousRush:
+
+                if (anxiousBehaviour != null)
+                {
+                    anxiousBehaviour.enabled = true;
+                    anxiousBehaviour.Initialize(this);
+                    anxiousBehaviour.Begin();
+                }
+
+                break;
+
+
+            case NpcBehaviourType.DoesNotRespond:
+
+                if (noResponseBehaviour != null)
+                {
+                    noResponseBehaviour.enabled = true;
+                    noResponseBehaviour.Initialize(this);
+                    noResponseBehaviour.Begin();
+                }
+
+                break;
+        }
+    }
+
+        public void MoveToReception()
+    {
+        MoveToReception(null);
+    }
+
+    public void MoveToIdlePoint(System.Action onReached = null)
+    {
+        if (navigation == null ||
+            idlePoint == null)
+        {
             return;
         }
 
-        // Walk faster when their number is called.
-        navigation.SetSpeed(calledSpeed);
+        navigation.SetSpeed(normalSpeed);
+
+        navigation.MoveTo(
+            idlePoint,
+            () =>
+            {
+                onReached?.Invoke();
+            }
+        );
+    }
+
+    public void EnableFindNpcInteraction()
+    {
+        if (interaction == null)
+            return;
+
+        interaction.SetMode(
+            ReceptionNpcInteractionMode.FindVictim
+        );
+    }
+
+    public void MoveToReception(
+        System.Action onReached)
+    {
+        if (navigation == null ||
+            receptionPoint == null)
+        {
+            return;
+        }
+
+        HasReachedReception = false;
 
         navigation.MoveTo(
             receptionPoint,
-            EnableFollowing
+            () =>
+            {
+                HasReachedReception = true;
+                onReached?.Invoke();
+            }
         );
+    }
+
+    public void StartReceptionDialogue(System.Action onFinished = null)
+    {
+        if (CaseData == null)
+        {
+            Debug.LogError(
+                "ReceptionNpcController: CaseData is null.",
+                this
+            );
+
+            return;
+        }
+
+        if (ReceptionDialogueUI.Instance == null)
+        {
+            Debug.LogError(
+                "ReceptionNpcController: ReceptionDialogueUI is missing.",
+                this
+            );
+
+            return;
+        }
+
+        interaction.SetMode(
+            ReceptionNpcInteractionMode.Disabled
+        );
+
+        ReceptionDialogueUI.Instance.ShowDialogue(
+            CaseData.victimName,
+            CaseData.receptionDialogue,
+            onFinished
+        );
+    }
+
+    private void StartNormal() { interaction.SetMode(ReceptionNpcInteractionMode.Disabled); StartTimeout(); }
+    private void StartUnresponsive() { interaction.SetMode(ReceptionNpcInteractionMode.FindVictim); StartTimeout(); }
+    private void EnableFollowing() { interaction.SetMode(ReceptionNpcInteractionMode.BeginFollowing); StartTimeout(); }
+    public void OnNumberCalled()
+    {
+        if (CaseData == null)
+            return;
+
+        switch (CaseData.behaviourType)
+        {
+            case NpcBehaviourType.NormalResponder:
+                normalBehaviour?.OnNumberCalled();
+                break;
+
+            case NpcBehaviourType.AnxiousRush:
+                anxiousBehaviour?.OnNumberCalled();
+                break;
+
+            case NpcBehaviourType.DoesNotRespond:
+                noResponseBehaviour?.OnNumberCalled();
+                break;
+        }
     }
         public void BeginFollowingPlayer()
     {
