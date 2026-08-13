@@ -35,9 +35,38 @@ public class CaseFileManager : MonoBehaviour
     [SerializeField] private int wrongAnswerPenalty = 20;
     [SerializeField] private float feedbackDuration = 2.5f;
 
+    [Header("Monitor Score VFX")]
+    [SerializeField] private GameObject monitorVfxPrefab;
+    [SerializeField] private Transform monitorVfxSpawnPoint;
+    [SerializeField] private float monitorVfxLifetime = 3f;
+
+    private GameObject activeMonitorVfx;
+
     private readonly List<CaseFileDropdownUI> dropdowns = new();
 
     private ScamCaseData activeCase;
+
+    private void PlayMonitorVfx()
+    {
+        if (monitorVfxPrefab == null)
+            return;
+
+        Transform spawn =
+            monitorVfxSpawnPoint != null
+                ? monitorVfxSpawnPoint
+                : transform;
+
+        GameObject vfx = Instantiate(
+            monitorVfxPrefab,
+            spawn.position,
+            spawn.rotation
+        );
+
+        Destroy(
+            vfx,
+            monitorVfxLifetime
+        );
+    }
 
     private void Awake()
     {
@@ -198,6 +227,8 @@ public class CaseFileManager : MonoBehaviour
         );
 
         root.SetActive(false);
+
+        PlayMonitorVfx();
 
         //Restore FPS movement/HUD.
         ExitAnalysisMode();
