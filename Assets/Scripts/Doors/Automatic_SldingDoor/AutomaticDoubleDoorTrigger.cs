@@ -14,6 +14,10 @@ public class AutomaticDoubleDoorTrigger : MonoBehaviour
     [Header("Closing")]
     [SerializeField, Min(0f)] private float closeDelay = 0.5f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource slidingDoorSound;
+    [SerializeField] private AudioClip slidingClip;
+
     private readonly Dictionary<Transform, int> colliderCounts =
         new Dictionary<Transform, int>();
 
@@ -40,7 +44,12 @@ public class AutomaticDoubleDoorTrigger : MonoBehaviour
         CancelScheduledClose();
 
         if (slidingDoor != null && !slidingDoor.IsOpen)
+        {
             slidingDoor.OpenDoor();
+
+            if (slidingDoorSound != null && slidingClip != null)
+                slidingDoorSound.PlayOneShot(slidingClip);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -73,8 +82,13 @@ public class AutomaticDoubleDoorTrigger : MonoBehaviour
 
         RemoveDestroyedObjects();
 
-        if (colliderCounts.Count == 0)
-            slidingDoor?.CloseDoor();
+        if (colliderCounts.Count == 0 && slidingDoor != null)
+        {
+            slidingDoor.CloseDoor();
+
+            if (slidingDoorSound != null && slidingClip != null)
+                slidingDoorSound.PlayOneShot(slidingClip);
+        }
 
         closeRoutine = null;
     }

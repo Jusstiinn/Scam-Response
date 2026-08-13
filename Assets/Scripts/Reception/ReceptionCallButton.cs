@@ -9,6 +9,11 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
     [SerializeField] private GameObject buttonVfxPrefab;
     [SerializeField] private Transform vfxSpawnPoint;
     [SerializeField] private float vfxLifetime = 2f;
+
+    [Header("Button VFX")]
+    [SerializeField] private AudioSource buttonAudioSource;
+    [SerializeField] private AudioClip buttonPressSfx;
+
     private bool glowed = false;
 
     public string InteractionPrompt =>
@@ -28,6 +33,7 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
 
         // Play button VFX.
         PlayButtonVfx();
+        PlayButtonSound();
 
         if (!glowed)
         {
@@ -57,5 +63,13 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
         );
 
         Destroy(vfx, vfxLifetime);
+    }
+
+    private void PlayButtonSound()
+    {
+        if (buttonAudioSource == null || buttonPressSfx == null)
+            return;
+
+        buttonAudioSource.PlayOneShot(buttonPressSfx);
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 public class InterviewDoorSceneLoader : MonoBehaviour, IInteractable
 {
     [SerializeField] private string interviewSceneName = "InterviewRoom";
+    [SerializeField] private AudioSource doorOpenSound;
+    [SerializeField] private AudioClip doorOpenClip;
     private bool glowed = false;
     public string InteractionPrompt => "Press E to enter the interview room";
     public bool CanInteract => GameManager.Instance != null && GameManager.Instance.CurrentCase != null && GameManager.Instance.CurrentPhase == GamePhase.NpcFollowing;
@@ -10,6 +12,7 @@ public class InterviewDoorSceneLoader : MonoBehaviour, IInteractable
     { 
         if (CanInteract) 
         { 
+            doorOpenSound.PlayOneShot(doorOpenClip);
             if (!glowed)
             {
                 Debug.Log("Completed");

@@ -16,6 +16,11 @@ public class HingedDoor : MonoBehaviour, IInteractable
     [SerializeField] private string openPrompt = "Press E to open door";
     [SerializeField] private string closePrompt = "Press E to close door";
 
+    [Header("Audio")]
+    [SerializeField] AudioSource door;
+    [SerializeField] AudioClip doorCloseSound;
+    [SerializeField] AudioClip doorOpenSound;
+
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
@@ -67,6 +72,15 @@ public class HingedDoor : MonoBehaviour, IInteractable
         }
 
         StartCoroutine(RotateDoor());
+
+        if (isOpen)
+        {
+            door.PlayOneShot(doorCloseSound);
+        }
+        else
+        {
+            door.PlayOneShot(doorOpenSound);
+        }
     }
 
     private IEnumerator RotateDoor()
