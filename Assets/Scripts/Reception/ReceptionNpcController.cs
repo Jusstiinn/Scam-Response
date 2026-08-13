@@ -22,43 +22,137 @@ public class ReceptionNpcController : MonoBehaviour
         CaseData = data; idlePoint = idle; receptionPoint = reception; exitPoint = exit; followTarget = follow;
         spawnPosition = transform.position; spawnRotation = transform.rotation; interaction.Configure(this); BeginBehaviour();
     }
-        private void BeginBehaviour()
+    private void BeginBehaviour()
     {
         navigation.SetSpeed(normalSpeed);
 
-        interaction.SetMode(ReceptionNpcInteractionMode.Disabled);
+        interaction.SetMode(
+            ReceptionNpcInteractionMode.Disabled
+        );
 
-        if (CaseData.behaviourType ==
-            NpcBehaviourType.AnxiousRush)
+        switch (CaseData.behaviourType)
         {
-            navigation.MoveTo(receptionPoint, EnableFollowing);
-        }
-        else
-        {
-            navigation.MoveTo(idlePoint, CaseData.behaviourType == 
-            NpcBehaviourType.DoesNotRespond ? StartUnresponsive : StartNormal);
+            // ==========================================
+            // CASE 1 - NORMAL
+            // ==========================================
+            case NpcBehaviourType.NormalResponder:
+
+                navigation.MoveTo(
+                    idlePoint,
+                    StartNormal
+                );
+
+                break;
+
+
+            // ==========================================
+            // CASE 2 - ANXIOUS RUSH
+            // ==========================================
+            case NpcBehaviourType.AnxiousRush:
+
+                navigation.SetSpeed(calledSpeed);
+
+                navigation.MoveTo(
+                    receptionPoint,
+                    StartAnxiousDialogue
+                );
+
+                break;
+
+
+            // ==========================================
+            // CASE 3 - DOES NOT RESPOND
+            // ==========================================
+            case NpcBehaviourType.DoesNotRespond:
+
+                navigation.MoveTo(
+                    idlePoint,
+                    StartUnresponsive
+                );
+
+                break;
         }
     }
-    private void StartNormal() { interaction.SetMode(ReceptionNpcInteractionMode.Disabled); StartTimeout(); }
-    private void StartUnresponsive() { interaction.SetMode(ReceptionNpcInteractionMode.FindVictim); StartTimeout(); }
-    private void EnableFollowing() { interaction.SetMode(ReceptionNpcInteractionMode.BeginFollowing); StartTimeout(); }
-        public void OnNumberCalled()
+
+    private void StartAnxiousDialogue()
     {
         StopTimeout();
 
-        if (CaseData.behaviourType == NpcBehaviourType.DoesNotRespond)
+        if (ReceptionDialogueUI.Instance == null)
         {
-            interaction.SetMode(ReceptionNpcInteractionMode.FindVictim);
+            Debug.LogError(
+                "ReceptionNpcController: ReceptionDialogueUI is missing.",
+                this
+            );
+
             return;
         }
 
-        // Walk faster when their number is called.
-        navigation.SetSpeed(calledSpeed);
-
-        navigation.MoveTo(
-            receptionPoint,
-            EnableFollowing
+        ReceptionDialogueUI.Instance.ShowDialogue(
+            CaseData.victimName,
+            CaseData.receptionDialogue,
+            BeginFollowingPlayer
         );
+    }
+    private void StartNormal() { interaction.SetMode(ReceptionNpcInteractionMode.Disabled); StartTimeout(); }
+    private void StartUnresponsive()
+    {
+        // Do NOT allow interaction yet.
+        // Player must press the queue button first.
+        interaction.SetMode(
+            ReceptionNpcInteractionMode.Disabled
+        );
+
+        StartTimeout();
+    }
+    private void EnableFollowing() { interaction.SetMode(ReceptionNpcInteractionMode.BeginFollowing); StartTimeout(); }
+    public void OnNumberCalled()
+    {
+        StopTimeout();
+
+        if (CaseData == null)
+            return;
+
+        switch (CaseData.behaviourType)
+        {
+            // ==========================================
+            // NORMAL
+            // ==========================================
+            case NpcBehaviourType.NormalResponder:
+
+                navigation.SetSpeed(calledSpeed);
+
+                navigation.MoveTo(
+                    receptionPoint,
+                    EnableFollowing
+                );
+
+                break;
+
+
+            // ==========================================
+            // ANXIOUS
+            // ==========================================
+            case NpcBehaviourType.AnxiousRush:
+
+                // Ignore the call button.
+                // This NPC already rushed in automatically.
+                break;
+
+
+            // ==========================================
+            // DOES NOT RESPOND
+            // ==========================================
+            case NpcBehaviourType.DoesNotRespond:
+
+                // NPC stays exactly where they are.
+                // Player can now go find and speak to them.
+                interaction.SetMode(
+                    ReceptionNpcInteractionMode.FindVictim
+                );
+
+                break;
+        }
     }
         public void BeginFollowingPlayer()
     {

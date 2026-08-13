@@ -65,7 +65,8 @@ public class ReceptionNpcInteraction : MonoBehaviour, IInteractable
         // Keep your current FindVictim behaviour for now.
         if (mode == ReceptionNpcInteractionMode.FindVictim)
         {
-            controller.BeginFollowingPlayer();
+            StartReceptionDialogue();
+            return;
         }
     }
 
