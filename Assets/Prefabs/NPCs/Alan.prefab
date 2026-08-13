@@ -697,9 +697,9 @@ MonoBehaviour:
   unattendedWaitSeconds: 18
   returnCooldownRange: {x: 5, y: 10}
   followRefreshRate: 0.2
-  normalSpeed: 2
-  calledSpeed: 4
-  followSpeed: 3
+  normalSpeed: 2.4
+  calledSpeed: 5
+  followSpeed: 3.6
 --- !u!114 &5704927238655514560
 MonoBehaviour:
   m_ObjectHideFlags: 0

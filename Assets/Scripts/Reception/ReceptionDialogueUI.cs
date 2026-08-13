@@ -13,6 +13,7 @@ public class ReceptionDialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Button continueButton;
+    
     [Header("Player")]
     [SerializeField] private FirstPersonController firstPersonController;
 

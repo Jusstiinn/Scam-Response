@@ -103,8 +103,12 @@ public class InterviewSceneController : MonoBehaviour
     }
     private void EndInterview()
     {
-        playerConversationController.ExitConversation();
-        GameManager.Instance.SetPhase(GamePhase.ReadyForAnalysis);
-        SceneTransitionManager.Instance.LoadScene(lobbySceneName);
+        GameManager.Instance.SetPhase(
+            GamePhase.ReadyForAnalysis
+        );
+
+        SceneTransitionManager.Instance.LoadScene(
+            lobbySceneName
+        );
     }
 }

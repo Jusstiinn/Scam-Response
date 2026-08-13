@@ -8516,66 +8516,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8230088851002256163, guid: 3e20fca3c99e79e478de1650318e27f1, type: 3}
   m_PrefabInstance: {fileID: 355012537}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &232994696
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 232994697}
-  - component: {fileID: 232994698}
-  m_Layer: 0
-  m_Name: floor Dirt (8)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &232994697
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232994696}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.09229418, y: 0.7010594, z: -0.7010554, w: -0.09229799}
-  m_LocalPosition: {x: -3.969, y: -4.277, z: 9.99}
-  m_LocalScale: {x: 1.9427383, y: 8.156505, z: 0.10402533}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1370091330}
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: -15}
---- !u!114 &232994698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232994696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 47a0caaa50642184db11f9dfe309b30d, type: 2}
-  m_DrawDistance: 1000
-  m_FadeScale: 1
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_RenderingLayerMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ScaleMode: 1
-  m_Offset: {x: 0, y: 0, z: 0.365}
-  m_Size: {x: 2.9, y: 1, z: 0.73}
-  m_FadeFactor: 0.5
-  version: 1
-  m_DecalLayerMask: 1
 --- !u!1001 &241882306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9812,7 +9752,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 247
-  m_IntensityMultiplier: 2
+  m_IntensityMultiplier: 1
   m_BlendDistance: 0.35
   m_HDR: 1
   m_BoxProjection: 1
@@ -12486,7 +12426,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 247
-  m_IntensityMultiplier: 2
+  m_IntensityMultiplier: 1
   m_BlendDistance: 0.35
   m_HDR: 1
   m_BoxProjection: 1
@@ -30055,66 +29995,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1354651568}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &894783025
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 894783026}
-  - component: {fileID: 894783027}
-  m_Layer: 0
-  m_Name: floor Dirt (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &894783026
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894783025}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.49999672, y: 0.50000095, z: -0.5000002, w: -0.50000226}
-  m_LocalPosition: {x: -6.897, y: -4.277, z: 1.56}
-  m_LocalScale: {x: 2.7601597, y: 8.156505, z: 0.11962022}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1370091330}
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: -90}
---- !u!114 &894783027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894783025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 47a0caaa50642184db11f9dfe309b30d, type: 2}
-  m_DrawDistance: 1000
-  m_FadeScale: 1
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_RenderingLayerMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ScaleMode: 1
-  m_Offset: {x: 0, y: 0, z: 0.365}
-  m_Size: {x: 2.9, y: 1, z: 0.73}
-  m_FadeFactor: 0.5
-  version: 1
-  m_DecalLayerMask: 1
 --- !u!4 &897085192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5124417129142218896, guid: 2db51a3ce7d7fe34a934d68f0c488f54, type: 3}
@@ -44739,6 +44619,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8764147799672000606, guid: d858284fbbbd234439c1bc866b5436bb, type: 3}
   m_PrefabInstance: {fileID: 1298157359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1301749293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4430946362212120067, guid: 2748569df226ca349897facfe3740130, type: 3}
+  m_PrefabInstance: {fileID: 6454629519655456460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1302908787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46889,11 +46780,8 @@ Transform:
   - {fileID: 702186167}
   - {fileID: 1644344678}
   - {fileID: 2109294630}
-  - {fileID: 1750980567}
   - {fileID: 2090266812}
-  - {fileID: 894783026}
   - {fileID: 2091723660}
-  - {fileID: 232994697}
   - {fileID: 479896083}
   - {fileID: 980319221}
   - {fileID: 258988558}
@@ -53550,7 +53438,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 247
-  m_IntensityMultiplier: 1.7
+  m_IntensityMultiplier: 1
   m_BlendDistance: 0.35
   m_HDR: 1
   m_BoxProjection: 1
@@ -55353,7 +55241,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 247
-  m_IntensityMultiplier: 2
+  m_IntensityMultiplier: 1
   m_BlendDistance: 0.35
   m_HDR: 1
   m_BoxProjection: 1
@@ -56518,7 +56406,8 @@ MonoBehaviour:
   speakerNameText: {fileID: 1694017276}
   dialogueText: {fileID: 638457745}
   continueButton: {fileID: 922058071}
-  firstPersonController: {fileID: 0}
+  firstPersonController: {fileID: 1301749293}
+  cameraController: {fileID: 0}
 --- !u!1001 &1676104475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59602,66 +59491,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1047170371078307517, guid: bdef5dc4aceb23249838248edb4161a4, type: 3}
   m_PrefabInstance: {fileID: 1748819362}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1750980566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1750980567}
-  - component: {fileID: 1750980568}
-  m_Layer: 0
-  m_Name: Dirt (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1750980567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750980566}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.4304614, y: 0.56098485, z: -0.43045866, w: -0.56098527}
-  m_LocalPosition: {x: -7.298, y: -0.76, z: 9.182}
-  m_LocalScale: {x: 1.9338329, y: 8.156505, z: 1.1184229}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1370091330}
-  m_LocalEulerAnglesHint: {x: 180, y: 90, z: -105}
---- !u!114 &1750980568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750980566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 47a0caaa50642184db11f9dfe309b30d, type: 2}
-  m_DrawDistance: 1000
-  m_FadeScale: 1
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_RenderingLayerMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ScaleMode: 1
-  m_Offset: {x: 0, y: 0, z: 0.365}
-  m_Size: {x: 2.9, y: 1, z: 0.73}
-  m_FadeFactor: 0.25
-  version: 1
-  m_DecalLayerMask: 1
 --- !u!1001 &1751656866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71008,7 +70837,7 @@ Transform:
   m_GameObject: {fileID: 2091723659}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4304584, y: 0.56098896, z: -0.56098354, w: 0.43045843}
-  m_LocalPosition: {x: -4.129, y: -4.277, z: 1.56}
+  m_LocalPosition: {x: -6.098, y: -4.277, z: 1.56}
   m_LocalScale: {x: 2.7601597, y: 8.156505, z: 0.11962022}
   m_ConstrainProportionsScale: 0
   m_Children: []

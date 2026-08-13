@@ -238,9 +238,9 @@ MonoBehaviour:
   unattendedWaitSeconds: 18
   returnCooldownRange: {x: 5, y: 10}
   followRefreshRate: 0.2
-  normalSpeed: 2
-  calledSpeed: 3.5
-  followSpeed: 3
+  normalSpeed: 2.4
+  calledSpeed: 4
+  followSpeed: 3.5
 --- !u!136 &4408483687950697971
 CapsuleCollider:
   m_ObjectHideFlags: 0

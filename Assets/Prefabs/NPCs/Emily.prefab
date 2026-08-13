@@ -701,8 +701,8 @@ MonoBehaviour:
   returnCooldownRange: {x: 5, y: 10}
   followRefreshRate: 0.2
   normalSpeed: 2.5
-  calledSpeed: 4.5
-  followSpeed: 3
+  calledSpeed: 5
+  followSpeed: 3.5
 --- !u!114 &6048844424462784208
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,17 +13,25 @@ public class ReceptionManager : MonoBehaviour
     [Header("Queue Display")]
     [SerializeField] private TMP_Text queueNumberText;
 
+    [Header("Return From Interview")]
+    [SerializeField] private Transform playerRoot;
+    [SerializeField] private CharacterController playerCharacterController;
+    [SerializeField] private Transform interviewReturnPoint;
+
     private ReceptionNpcController currentNpc;
 
     private void Start()
     {
         /*
-         * If we returned from the InterviewRoom and are now ready
-         * for analysis, don't spawn another reception NPC.
-         */
+        * Returning from the InterviewRoom.
+        * Move the player beside the interview door
+        * before the scene fades back in.
+        */
         if (GameManager.Instance != null &&
             GameManager.Instance.CurrentPhase == GamePhase.ReadyForAnalysis)
         {
+            MovePlayerToInterviewReturnPoint();
+
             if (queueNumberText != null)
                 queueNumberText.text = "---";
 
@@ -237,6 +245,46 @@ public class ReceptionManager : MonoBehaviour
             "Called queue number: " +
             currentNpc.CaseData
                 .queueNumber
+        );
+    }
+
+    private void MovePlayerToInterviewReturnPoint()
+    {
+        if (playerRoot == null)
+        {
+            Debug.LogError(
+                "ReceptionManager: Player Root is not assigned.",
+                this
+            );
+
+            return;
+        }
+
+        if (interviewReturnPoint == null)
+        {
+            Debug.LogError(
+                "ReceptionManager: Interview Return Point is not assigned.",
+                this
+            );
+
+            return;
+        }
+
+        // CharacterController does not like being teleported
+        // while enabled, so temporarily disable it.
+        if (playerCharacterController != null)
+            playerCharacterController.enabled = false;
+
+        playerRoot.SetPositionAndRotation(
+            interviewReturnPoint.position,
+            interviewReturnPoint.rotation
+        );
+
+        if (playerCharacterController != null)
+            playerCharacterController.enabled = true;
+
+        Debug.Log(
+            "Player returned outside interview room."
         );
     }
 }
