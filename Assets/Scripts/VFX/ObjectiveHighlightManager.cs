@@ -19,7 +19,21 @@ public class ObjectiveHighlightManager : MonoBehaviour
         "Monitor"
     };
 
+    [Header("Case Restriction")]
+    [SerializeField] private string firstCaseId = "Case01";
+
     private int currentObjectiveIndex = 0;
+
+    private bool IsFirstCase()
+    {
+        if (GameManager.Instance == null)
+            return false;
+
+        if (GameManager.Instance.CurrentCase == null)
+            return false;
+
+        return GameManager.Instance.CurrentCase.caseId == firstCaseId;
+    }
 
     private readonly Dictionary<string, ObjectiveHighlightTarget>
         registeredTargets =
@@ -44,6 +58,9 @@ public class ObjectiveHighlightManager : MonoBehaviour
     public void RegisterTarget(ObjectiveHighlightTarget target)
     {
         if (target == null)
+            return;
+
+        if (!IsFirstCase())
             return;
 
         if (string.IsNullOrEmpty(target.ObjectiveID))
@@ -74,24 +91,17 @@ public class ObjectiveHighlightManager : MonoBehaviour
 
     public void CompleteObjective(string objectiveID)
     {
+        if (!IsFirstCase())
+            return;
+
         if (currentObjectiveIndex >= objectiveOrder.Count)
             return;
 
         string expectedObjective =
             objectiveOrder[currentObjectiveIndex];
 
-        // Prevent objectives being completed out of order.
         if (objectiveID != expectedObjective)
-        {
-            Debug.Log(
-                "ObjectiveHighlightManager: Tried to complete " +
-                objectiveID +
-                " but current objective is " +
-                expectedObjective
-            );
-
             return;
-        }
 
         if (registeredTargets.TryGetValue(
             objectiveID,

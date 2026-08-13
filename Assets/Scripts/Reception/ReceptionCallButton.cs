@@ -4,6 +4,7 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private ReceptionManager receptionManager;
     [SerializeField] private PressButtonAnimation physicalButton;
+    private bool glowed = false;
 
     public string InteractionPrompt =>
         "Press E to call the next number";
@@ -19,6 +20,13 @@ public class ReceptionCallButton : MonoBehaviour, IInteractable
 
         // Play physical red button press animation.
         physicalButton?.Press();
+
+        if (!glowed)
+        {
+            GetComponent<ObjectiveHighlightTarget>()?
+            .CompleteObjective();
+            glowed = true;
+        }
 
         // Call the current queue number.
         receptionManager?.CallCurrentNumber();

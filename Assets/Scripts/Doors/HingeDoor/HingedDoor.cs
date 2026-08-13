@@ -10,6 +10,7 @@ public class HingedDoor : MonoBehaviour, IInteractable
     [SerializeField] private float openAngle = 90f;
     [SerializeField] private float openSpeed = 2.5f;
     [SerializeField] private bool reverseDirection = false;
+    [SerializeField] private bool AffectGlowMaterial = false;
 
     [Header("Interaction Text")]
     [SerializeField] private string openPrompt = "Press E to open door";
@@ -58,6 +59,12 @@ public class HingedDoor : MonoBehaviour, IInteractable
     {
         if (isMoving)
             return;
+            
+        if (AffectGlowMaterial)
+        {
+            GetComponent<ObjectiveHighlightTarget>()?
+            .CompleteObjective();
+        }
 
         StartCoroutine(RotateDoor());
     }
