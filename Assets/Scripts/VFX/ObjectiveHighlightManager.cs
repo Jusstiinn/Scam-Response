@@ -20,7 +20,7 @@ public class ObjectiveHighlightManager : MonoBehaviour
     };
 
     [Header("Case Restriction")]
-    [SerializeField] private string firstCaseId = "Case01";
+    [SerializeField] private string firstCaseId = "C01";
 
     private int currentObjectiveIndex = 0;
 
@@ -55,12 +55,14 @@ public class ObjectiveHighlightManager : MonoBehaviour
         // DontDestroyOnLoad(gameObject);
     }
 
+    public void RefreshCurrentHighlight()
+    {
+        RefreshHighlight();
+    }
+
     public void RegisterTarget(ObjectiveHighlightTarget target)
     {
         if (target == null)
-            return;
-
-        if (!IsFirstCase())
             return;
 
         if (string.IsNullOrEmpty(target.ObjectiveID))
@@ -91,9 +93,6 @@ public class ObjectiveHighlightManager : MonoBehaviour
 
     public void CompleteObjective(string objectiveID)
     {
-        if (!IsFirstCase())
-            return;
-
         if (currentObjectiveIndex >= objectiveOrder.Count)
             return;
 
@@ -117,21 +116,21 @@ public class ObjectiveHighlightManager : MonoBehaviour
 
     private void RefreshHighlight()
     {
-        // Remove highlight from every currently registered object.
-        foreach (ObjectiveHighlightTarget targett in registeredTargets.Values)
+        foreach (ObjectiveHighlightTarget targett
+                in registeredTargets.Values)
         {
             if (targett != null)
+            {
                 targett.RestoreOriginalMaterial();
+            }
         }
+
+        // Only highlight during first case.
+        if (!IsFirstCase())
+            return;
 
         if (currentObjectiveIndex >= objectiveOrder.Count)
-        {
-            Debug.Log(
-                "ObjectiveHighlightManager: All objectives completed."
-            );
-
             return;
-        }
 
         string currentObjective =
             objectiveOrder[currentObjectiveIndex];
@@ -140,7 +139,21 @@ public class ObjectiveHighlightManager : MonoBehaviour
             currentObjective,
             out ObjectiveHighlightTarget target))
         {
-            target.ApplyHighlight(highlightMaterial);
+            target.ApplyHighlight(
+                highlightMaterial
+            );
+
+            Debug.Log(
+                "Highlighting objective: " +
+                currentObjective
+            );
+        }
+        else
+        {
+            Debug.LogWarning(
+                "No registered target for: " +
+                currentObjective
+            );
         }
     }
 

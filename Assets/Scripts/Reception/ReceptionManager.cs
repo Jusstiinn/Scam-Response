@@ -95,6 +95,11 @@ public class ReceptionManager : MonoBehaviour
             GameManager.Instance.StartCase(
                 caseData
             );
+            
+            if (ObjectiveHighlightManager.Instance != null)
+{
+            ObjectiveHighlightManager.Instance.RefreshCurrentHighlight();
+}
         }
 
         SpawnNpc(caseData);

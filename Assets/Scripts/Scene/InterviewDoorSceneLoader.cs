@@ -12,11 +12,11 @@ public class InterviewDoorSceneLoader : MonoBehaviour, IInteractable
         { 
             if (!glowed)
             {
+                Debug.Log("Completed");
                 GetComponent<ObjectiveHighlightTarget>()?
                 .CompleteObjective();
+                glowed = true;
             }
-            GetComponent<ObjectiveHighlightTarget>()?
-            .CompleteObjective();
             GameManager.Instance.SetPhase(GamePhase.Interview); 
             SceneTransitionManager.Instance.LoadScene(interviewSceneName); 
         } 
