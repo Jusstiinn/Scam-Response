@@ -7,6 +7,7 @@ public class InterviewSceneController : MonoBehaviour
     [SerializeField] private Transform playerChairPoint;
     [SerializeField] private InterviewChairInteraction playerChairInteraction;
     [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private DialogueUI dialogueUI;
     [SerializeField] private string lobbySceneName = "Lobby";
 
     private void Start()
@@ -66,6 +67,13 @@ public class InterviewSceneController : MonoBehaviour
             npcChairPoint.position,
             npcChairPoint.rotation
         );
+
+        NpcMumbleAudio mumbleAudio = go.GetComponentInChildren<NpcMumbleAudio>(true);
+
+        if (dialogueUI != null)
+        {
+            dialogueUI.SetNpcMumbleAudio(mumbleAudio);
+        }
 
         // Find animator bridge anywhere inside the prefab.
         NpcAnimatorBridge anim =

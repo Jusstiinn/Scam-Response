@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
+
+
     [SerializeField] private GameObject root;
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
@@ -14,15 +16,24 @@ public class DialogueUI : MonoBehaviour
 
     [SerializeField] private Button continueButton;
 
+    private NpcMumbleAudio npcMumbleAudio;
+
     public void Open(string speakerName)
     {
         root.SetActive(true);
         speakerNameText.text = speakerName;
     }
 
+    public void SetNpcMumbleAudio(NpcMumbleAudio mumbleAudio)
+    {
+        npcMumbleAudio = mumbleAudio;
+    }
+
     public void Close()
     {
         ClearChoices();
+
+        npcMumbleAudio?.StopMumble();
 
         continueButton.onClick.RemoveAllListeners();
         continueButton.gameObject.SetActive(false);
@@ -36,6 +47,8 @@ public class DialogueUI : MonoBehaviour
         Action<int> selected)
     {
         dialogueText.text = line;
+
+        npcMumbleAudio?.PlayMumble();
 
         ClearChoices();
 
@@ -77,6 +90,8 @@ public class DialogueUI : MonoBehaviour
     {
         dialogueText.text = response;
 
+        npcMumbleAudio?.PlayMumble();
+
         // Remove the choice buttons
         ClearChoices();
 
@@ -98,6 +113,8 @@ public class DialogueUI : MonoBehaviour
         Action onContinue)
     {
         dialogueText.text = line;
+
+        npcMumbleAudio?.PlayMumble();
 
         // No choices for this line
         ClearChoices();

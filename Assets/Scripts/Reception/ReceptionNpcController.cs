@@ -90,6 +90,10 @@ public class ReceptionNpcController : MonoBehaviour
             return;
         }
 
+        NpcMumbleAudio mumbleAudio = GetComponentInChildren<NpcMumbleAudio>(true);
+
+        ReceptionDialogueUI.Instance.SetNpcMumbleAudio(mumbleAudio);
+
         ReceptionDialogueUI.Instance.ShowDialogue(
             CaseData.victimName,
             CaseData.receptionDialogue,

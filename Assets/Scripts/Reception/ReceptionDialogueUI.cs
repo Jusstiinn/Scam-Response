@@ -17,6 +17,7 @@ public class ReceptionDialogueUI : MonoBehaviour
     [Header("Player")]
     [SerializeField] private FirstPersonController firstPersonController;
 
+    private NpcMumbleAudio npcMumbleAudio;
     private Action onDialogueFinished;
     private bool dialogueOpen;
 
@@ -29,6 +30,11 @@ public class ReceptionDialogueUI : MonoBehaviour
 
         if (continueButton != null)
             continueButton.onClick.AddListener(ContinueDialogue);
+    }
+
+    public void SetNpcMumbleAudio(NpcMumbleAudio mumbleAudio)
+    {
+        npcMumbleAudio = mumbleAudio;
     }
 
     public void ShowDialogue(
@@ -66,6 +72,11 @@ public class ReceptionDialogueUI : MonoBehaviour
         speakerNameText.text = speakerName;
         dialogueText.text = message;
 
+        if (npcMumbleAudio != null)
+        {
+            npcMumbleAudio.PlayMumble();
+        }
+
         onDialogueFinished = finishedCallback;
         dialogueOpen = true;
 
@@ -89,6 +100,8 @@ public class ReceptionDialogueUI : MonoBehaviour
 
         dialogueOpen = false;
 
+        npcMumbleAudio?.StopMumble();
+
         if (dialogueRoot != null)
             dialogueRoot.SetActive(false);
 
@@ -111,6 +124,8 @@ public class ReceptionDialogueUI : MonoBehaviour
     public void CloseDialogue()
     {
         dialogueOpen = false;
+
+        npcMumbleAudio?.StopMumble();
 
         if (dialogueRoot != null)
             dialogueRoot.SetActive(false);

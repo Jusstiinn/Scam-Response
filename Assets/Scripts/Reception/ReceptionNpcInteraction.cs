@@ -86,7 +86,6 @@ public class ReceptionNpcInteraction : MonoBehaviour, IInteractable
                 "ReceptionNpcInteraction: CaseData is null.",
                 this
             );
-
             return;
         }
 
@@ -96,14 +95,21 @@ public class ReceptionNpcInteraction : MonoBehaviour, IInteractable
                 "ReceptionNpcInteraction: ReceptionDialogueUI is missing from the Lobby scene.",
                 this
             );
-
             return;
         }
 
-        // Stop the player from pressing E repeatedly
-        // while dialogue is open.
         SetMode(ReceptionNpcInteractionMode.Disabled);
 
+        // GET THIS NPC'S MUMBLE AUDIO
+        NpcMumbleAudio mumbleAudio =
+            controller.GetComponentInChildren<NpcMumbleAudio>(true);
+
+        // GIVE IT TO THE RECEPTION DIALOGUE UI
+        ReceptionDialogueUI.Instance.SetNpcMumbleAudio(
+            mumbleAudio
+        );
+
+        // OPEN THE DIALOGUE
         ReceptionDialogueUI.Instance.ShowDialogue(
             caseData.victimName,
             caseData.receptionDialogue,
