@@ -4,9 +4,6 @@ public class DoesNotRespondBehaviour : MonoBehaviour
 {
     private ReceptionNpcController controller;
 
-    private bool numberCalled;
-    private bool dialogueStarted;
-
     public void Initialize(
         ReceptionNpcController npcController)
     {
@@ -15,8 +12,6 @@ public class DoesNotRespondBehaviour : MonoBehaviour
 
     public void Begin()
     {
-        numberCalled = false;
-        dialogueStarted = false;
 
         // NPC remains at the idle location.
     }
@@ -26,7 +21,6 @@ public class DoesNotRespondBehaviour : MonoBehaviour
         if (controller == null)
             return;
 
-        numberCalled = true;
 
         // Do NOT move to reception.
         // Player now has to find this NPC.
