@@ -6,21 +6,29 @@ using UnityEngine.UI;
 
 public class CaseFileManager : MonoBehaviour
 {
+
     [Header("Main UI")]
     [SerializeField] private GameObject root;
     [SerializeField] private TMP_Text caseTitleText;
     [SerializeField] private TMP_Text victimInfoText;
 
-    [Header("Paragraph Text")]
-    [SerializeField] private TMP_Text[] textSegments;
-
-    [Header("Dropdowns")]
-    [SerializeField] private Transform dropdownContainer;
+    [Header("Paragraph")]
+    [SerializeField] private Transform paragraphContainer;
+    [SerializeField] private TMP_Text textPrefab;
     [SerializeField] private CaseFileDropdownUI dropdownPrefab;
 
     [Header("Buttons / Results")]
     [SerializeField] private Button submitButton;
     [SerializeField] private CaseResultUI resultUI;
+
+    [Header("Player")]
+    [SerializeField] private Behaviour firstPersonController;
+    [SerializeField] private PlayerInteraction playerInteraction;
+
+    [Header("Gameplay UI")]
+    [SerializeField] private GameObject queueNumberCanvas;
+    [SerializeField] private GameObject interactionCanvas;
+    [SerializeField] private GameObject crosshairCanvas;
 
     [Header("Scoring")]
     [SerializeField] private int pointsPerCorrectAnswer = 100;
@@ -54,18 +62,15 @@ public class CaseFileManager : MonoBehaviour
             return;
         }
 
-        dropdowns.Clear();
-
-        // Clear old generated dropdowns.
-        foreach (Transform child in dropdownContainer)
+        // Clear old generated UI
+        foreach (Transform child in paragraphContainer)
         {
             Destroy(child.gameObject);
         }
 
-        // -----------------------------
-        // CASE INFORMATION
-        // -----------------------------
+        dropdowns.Clear();
 
+        // Case information
         caseTitleText.text =
             activeCase.caseTitle;
 
@@ -74,60 +79,58 @@ public class CaseFileManager : MonoBehaviour
             activeCase.victimOccupation;
 
         // -----------------------------
-        // PARAGRAPH TEXT SEGMENTS
+        // BUILD PARAGRAPH + DROPDOWNS
         // -----------------------------
 
-        for (int i = 0; i < textSegments.Length; i++)
+        if (activeCase.caseFileParagraph != null)
         {
-            if (
-                activeCase.caseFileTextSegments != null &&
-                i < activeCase.caseFileTextSegments.Length
-            )
+            for (int i = 0; i < activeCase.caseFileParagraph.Length; i++)
             {
-                textSegments[i].text =
-                    activeCase.caseFileTextSegments[i];
+                CaseFileParagraphPart part =
+                    activeCase.caseFileParagraph[i];
 
-                textSegments[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                textSegments[i].text = "";
-                textSegments[i].gameObject.SetActive(false);
-            }
-        }
+                // Spawn paragraph text
+                if (!string.IsNullOrWhiteSpace(part.textBefore))
+                {
+                    TMP_Text text =
+                        Instantiate(
+                            textPrefab,
+                            paragraphContainer
+                        );
 
-        // -----------------------------
-        // CREATE DROPDOWNS
-        // -----------------------------
+                    text.text = part.textBefore;
+                }
 
-        if (activeCase.caseFileDropdowns != null)
-        {
-            foreach (
-                CaseFileDropdownData dropdownData
-                in activeCase.caseFileDropdowns
-            )
-            {
-                CaseFileDropdownUI ui =
-                    Instantiate(
-                        dropdownPrefab,
-                        dropdownContainer
+                // Spawn a dropdown after this paragraph section
+                // ONLY if a matching dropdown exists.
+                if (activeCase.caseFileDropdowns != null &&
+                    i < activeCase.caseFileDropdowns.Length)
+                {
+                    CaseFileDropdownData dropdownData =
+                        activeCase.caseFileDropdowns[i];
+
+                    CaseFileDropdownUI ui =
+                        Instantiate(
+                            dropdownPrefab,
+                            paragraphContainer
+                        );
+
+                    bool learned =
+                        string.IsNullOrWhiteSpace(
+                            dropdownData.supportingFactId
+                        )
+                        ||
+                        GameManager.Instance.IsFactUnlocked(
+                            dropdownData.supportingFactId
+                        );
+
+                    ui.Configure(
+                        dropdownData,
+                        learned
                     );
 
-                bool learned =
-                    string.IsNullOrWhiteSpace(
-                        dropdownData.supportingFactId
-                    )
-                    ||
-                    GameManager.Instance.IsFactUnlocked(
-                        dropdownData.supportingFactId
-                    );
-
-                ui.Configure(
-                    dropdownData,
-                    learned
-                );
-
-                dropdowns.Add(ui);
+                    dropdowns.Add(ui);
+                }
             }
         }
 
@@ -135,10 +138,8 @@ public class CaseFileManager : MonoBehaviour
 
         root.SetActive(true);
 
-        Cursor.lockState =
-            CursorLockMode.None;
-
-        Cursor.visible = true;
+        // Freeze normal FPS gameplay
+        EnterAnalysisMode();
     }
 
     private IEnumerator Evaluate()
@@ -157,13 +158,9 @@ public class CaseFileManager : MonoBehaviour
                 dropdown.IsCorrect();
 
             if (ok)
-            {
                 correct++;
-            }
             else
-            {
                 wrong++;
-            }
 
             dropdown.ShowValidation(ok);
         }
@@ -202,10 +199,55 @@ public class CaseFileManager : MonoBehaviour
 
         root.SetActive(false);
 
+        // Restore player and HUD
+        ExitAnalysisMode();
+
         resultUI.Show(
             activeCase,
             score,
             wrong
         );
+    }
+
+        private void EnterAnalysisMode()
+    {
+        if (firstPersonController != null)
+            firstPersonController.enabled = false;
+
+        if (playerInteraction != null)
+            playerInteraction.enabled = false;
+
+        if (queueNumberCanvas != null)
+            queueNumberCanvas.SetActive(false);
+
+        if (interactionCanvas != null)
+            interactionCanvas.SetActive(false);
+
+        if (crosshairCanvas != null)
+            crosshairCanvas.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void ExitAnalysisMode()
+    {
+        if (firstPersonController != null)
+            firstPersonController.enabled = true;
+
+        if (playerInteraction != null)
+            playerInteraction.enabled = true;
+
+        if (queueNumberCanvas != null)
+            queueNumberCanvas.SetActive(true);
+
+        if (interactionCanvas != null)
+            interactionCanvas.SetActive(true);
+
+        if (crosshairCanvas != null)
+            crosshairCanvas.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

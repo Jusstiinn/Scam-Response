@@ -99,5 +99,53 @@ MonoBehaviour:
   whatToDoIfVictim: Contact the relevant bank immediately if money has already been
     transferred. Preserve messages, documents and transaction records and report
     the incident through the appropriate official channels.
-  caseFileTextSegments: []
-  caseFileDropdowns: []
+  caseFileParagraph:
+  - textBefore: The victim received an
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: The letter contained
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: Believing the instructions were legitimate, she entered
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: This exposed her bank account to unauthorised access.
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  caseFileDropdowns:
+  - fieldId: letter_instruction
+    options:
+    - Official-looking fake bank letter
+    - Employment contract
+    - Parcel collection notice
+    - Telecommunications promotion
+    correctOptionIndex: 0
+    supportingFactId: fake_bank_letter
+  - fieldId: 'information_provided '
+    options:
+    - Instructions to visit a bank branch
+    - A QR code or link directing him to a fake banking website
+    - A legitimate cheque
+    - A customer-service phone number only
+    correctOptionIndex: 1
+    supportingFactId: fake_bank_link
+  - fieldId: 
+    options:
+    - Only his mailing address
+    - His employment information
+    - His banking login credentials and verification information
+    - A parcel tracking number
+    correctOptionIndex: 2
+    supportingFactId: bank_credentials

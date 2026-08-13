@@ -101,5 +101,53 @@ MonoBehaviour:
   whatToDoIfVictim: Immediately change the affected account password, enable additional
     security features where available, review recent account activity and contact
     the relevant service provider if unauthorised access is detected.
-  caseFileTextSegments: []
-  caseFileDropdowns: []
+  caseFileParagraph:
+  - textBefore: The victim received a
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: claiming that
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: After following the instructions, he entered
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: This allowed the scammer to gain access to the victim's account.
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  caseFileDropdowns:
+  - fieldId: alert_type
+    options:
+    - Parcel delivery notification
+    - Fake Google sign-in alert
+    - Bank statement
+    - Job advertisement
+    correctOptionIndex: 1
+    supportingFactId: google_signin_alert
+  - fieldId: alert_claim
+    options:
+    - His parcel could not be delivered
+    - 'He had won an online prize '
+    - Someone had accessed his account from another device
+    - His bank account was being closed
+    correctOptionIndex: 2
+    supportingFactId: unauthorised_signin_warning
+  - fieldId: information_provided
+    options:
+    - His login credentials and verification code
+    - His home address and postal code
+    - His employment information
+    - A parcel tracking number
+    correctOptionIndex: 0
+    supportingFactId: login_credentials

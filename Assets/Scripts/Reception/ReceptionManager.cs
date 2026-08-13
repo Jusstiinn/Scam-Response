@@ -32,8 +32,13 @@ public class ReceptionManager : MonoBehaviour
         {
             MovePlayerToInterviewReturnPoint();
 
-            if (queueNumberText != null)
-                queueNumberText.text = "---";
+            // Keep displaying the current case's queue number
+            if (queueNumberText != null &&
+                GameManager.Instance.CurrentCase != null)
+            {
+                queueNumberText.text =
+                    GameManager.Instance.CurrentCase.queueNumber;
+            }
 
             return;
         }

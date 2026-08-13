@@ -48,9 +48,8 @@ public class ScamCaseData : ScriptableObject
 
     [Header("Case File")]
 
-    [Tooltip("Text sections that appear before, between, and after dropdowns.")]
-    [TextArea(2, 5)]
-    public string[] caseFileTextSegments;
+    [Tooltip("Paragraph sections containing text followed by an optional dropdown.")]
+    public CaseFileParagraphPart[] caseFileParagraph;
 
     [Tooltip("Dropdowns that appear between the text sections.")]
     public CaseFileDropdownData[] caseFileDropdowns;

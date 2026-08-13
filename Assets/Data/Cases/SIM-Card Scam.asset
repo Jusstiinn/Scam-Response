@@ -118,5 +118,54 @@ MonoBehaviour:
     and terminate any unauthorised line or account. Secure your other accounts if
     you shared a confirmation code, monitor for suspicious activity and report the
     scam to the relevant authorities.
-  caseFileTextSegments: []
-  caseFileDropdowns: []
+  caseFileParagraph:
+  - textBefore: The victim was approached by a
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: which offered her
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: To complete the supposed registration, she provided
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  - textBefore: She later discovered that a SIM card had been registered under her
+      name without her genuine understanding or consent.
+    dropdown:
+      fieldId: 
+      options: []
+      correctOptionIndex: 0
+      supportingFactId: 
+  caseFileDropdowns:
+  - fieldId: company_type
+    options:
+    - Police officer
+    - Delivery company
+    - Investment adviser
+    - Fake telecommunications company
+    correctOptionIndex: 3
+    supportingFactId: fake_telco
+  - fieldId: promotion_offer
+    options:
+    - Free parcel delivery
+    - $100 for signing up for a SIM card
+    - Guaranteed investment returns
+    - Discounted insurance
+    correctOptionIndex: 1
+    supportingFactId: one_hundred_dollar_offer
+  - fieldId: information_provided
+    options:
+    - Her social-media password
+    - Her debit-card PIN
+    - Her delivery address
+    - Her NRIC details and a confirmation code
+    correctOptionIndex: 3
+    supportingFactId: nric_details
