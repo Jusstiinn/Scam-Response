@@ -17,10 +17,10 @@ public class ReceptionNpcInteraction : MonoBehaviour, IInteractable
         get
         {
             if (mode == ReceptionNpcInteractionMode.FindVictim)
-                return "Press E to approach the complainant";
+                return "Press E to get the victim's attention";
 
             if (mode == ReceptionNpcInteractionMode.BeginFollowing)
-                return "Press E to speak with the complainant";
+                return "Press E to speak with the victim";
 
             return "";
         }
@@ -37,6 +37,12 @@ public class ReceptionNpcInteraction : MonoBehaviour, IInteractable
     public void SetMode(ReceptionNpcInteractionMode value)
     {
         mode = value;
+
+        Debug.Log(
+            gameObject.name +
+            " interaction mode changed to: " +
+            mode
+        );
     }
 
     public void Interact()

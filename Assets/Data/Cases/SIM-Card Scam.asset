@@ -19,10 +19,10 @@ MonoBehaviour:
   victimName: Emily Wong
   victimAge: 28
   victimOccupation: Office Administrator
-  initialComplaint: HI... im Emily, I was approached by what I thought was a telecommunications
-    company offering a limited-time chance to earn $100 by signing up for a SIM card.
-    I gave them my NRIC details and a confirmation code, but I only realised later
-    that a SIM card had been created under my name.
+  initialComplaint: MY SIM CARD CREDENTIALS ARE STOLEN!! I was approached by what
+    I thought was a telecommunications company offering a limited-time chance to
+    earn $100 by signing up for a SIM card. I gave them my NRIC details and a confirmation
+    code, but I realised too late that a SIM card had been created under my name.
   lobbyNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
   interviewNpcPrefab: {fileID: 1160195515370384998, guid: 282dbb64542aba2448f3bf95f599c3ec, type: 3}
   behaviourType: 2

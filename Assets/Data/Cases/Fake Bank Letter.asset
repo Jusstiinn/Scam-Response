@@ -19,9 +19,10 @@ MonoBehaviour:
   victimName: Alice Lee
   victimAge: 42
   victimOccupation: Operations Manager
-  initialComplaint: Hi, im Alice. Someone claiming to be a financial adviser contacted
-    me about an investment opportunity that was supposedly offered through a major
-    bank. They even showed me documents carrying the bank's branding.
+  initialComplaint: Oh so sorry, I was lost in my worries, im Alice. Someone claiming
+    to be a financial adviser contacted me about an investment opportunity that was
+    supposedly offered through a major bank. They even showed me documents carrying
+    the bank's branding.
   lobbyNpcPrefab: {fileID: 6377121035299240574, guid: 0475e43ff63f5a54fbf6d294e5fa7322, type: 3}
   interviewNpcPrefab: {fileID: 6377121035299240574, guid: 0475e43ff63f5a54fbf6d294e5fa7322, type: 3}
   behaviourType: 1
@@ -136,16 +137,16 @@ MonoBehaviour:
   - fieldId: 'information_provided '
     options:
     - Instructions to visit a bank branch
-    - A QR code or link directing him to a fake banking website
+    - A QR code or link directing her to a fake banking website
     - A legitimate cheque
     - A customer-service phone number only
     correctOptionIndex: 1
     supportingFactId: fake_bank_link
   - fieldId: 
     options:
-    - Only his mailing address
-    - His employment information
-    - His banking login credentials and verification information
+    - Only her mailing address
+    - Her employment information
+    - Her banking login credentials and verification information
     - A parcel tracking number
     correctOptionIndex: 2
     supportingFactId: bank_credentials

@@ -24,6 +24,8 @@ public class ReceptionNpcController : MonoBehaviour
     }
     private void BeginBehaviour()
     {
+        Debug.Log("BEGIN BEHAVIOUR CALLED FOR: " + gameObject.name);
+
         navigation.SetSpeed(normalSpeed);
 
         interaction.SetMode(
@@ -97,14 +99,16 @@ public class ReceptionNpcController : MonoBehaviour
     private void StartNormal() { interaction.SetMode(ReceptionNpcInteractionMode.Disabled); StartTimeout(); }
     private void StartUnresponsive()
     {
-        // Do NOT allow interaction yet.
-        // Player must press the queue button first.
+        // Wait here until the number is called.
         interaction.SetMode(
             ReceptionNpcInteractionMode.Disabled
         );
 
-        StartTimeout();
+        // Do NOT start the unattended timer.
+        // This NPC must remain here until called.
+        StopTimeout();
     }
+    
     private void EnableFollowing() { interaction.SetMode(ReceptionNpcInteractionMode.BeginFollowing); StartTimeout(); }
     public void OnNumberCalled()
     {
