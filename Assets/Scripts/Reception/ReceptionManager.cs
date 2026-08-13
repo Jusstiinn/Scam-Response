@@ -256,7 +256,6 @@ public class ReceptionManager : MonoBehaviour
                 "ReceptionManager: Player Root is not assigned.",
                 this
             );
-
             return;
         }
 
@@ -266,22 +265,26 @@ public class ReceptionManager : MonoBehaviour
                 "ReceptionManager: Interview Return Point is not assigned.",
                 this
             );
-
             return;
         }
 
-        // CharacterController does not like being teleported
-        // while enabled, so temporarily disable it.
+        // Temporarily disable CharacterController for teleport
         if (playerCharacterController != null)
             playerCharacterController.enabled = false;
 
+        // Teleport player outside interview door
         playerRoot.SetPositionAndRotation(
             interviewReturnPoint.position,
             interviewReturnPoint.rotation
         );
 
+        // Re-enable CharacterController
         if (playerCharacterController != null)
             playerCharacterController.enabled = true;
+
+        // Restore normal FPS mouse behaviour
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         Debug.Log(
             "Player returned outside interview room."

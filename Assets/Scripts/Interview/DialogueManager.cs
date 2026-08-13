@@ -9,29 +9,35 @@ public class DialogueManager : MonoBehaviour
     private int index;
     private Action complete;
 
-    public void StartInterview(ScamCaseData data, Action onComplete)
+    public void StartInterview(
+        ScamCaseData data,
+        Action onComplete)
     {
         activeCase = data;
         index = 0;
         complete = onComplete;
 
-        if (activeCase.interviewDecisions == null ||
+        if (activeCase == null ||
+            activeCase.interviewDecisions == null ||
             activeCase.interviewDecisions.Length == 0)
         {
-            complete?.Invoke();
+            FinishInterview();
             return;
         }
 
         dialogueUI.Open(activeCase.victimName);
+
         ShowDecision();
     }
 
     private void ShowDecision()
     {
-        var d = activeCase.interviewDecisions[index];
+        var d =
+            activeCase.interviewDecisions[index];
 
-        // No choices → show dialogue with Continue button
-        if (d.choices == null || d.choices.Length == 0)
+        // No choices -> normal dialogue with Continue.
+        if (d.choices == null ||
+            d.choices.Length == 0)
         {
             dialogueUI.ShowContinueDialogue(
                 d.npcLine,
@@ -41,7 +47,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Has choices → show choice buttons
+        // Has choices.
         dialogueUI.ShowDecision(
             d.npcLine,
             d.choices,
@@ -51,10 +57,12 @@ public class DialogueManager : MonoBehaviour
 
     private void Choose(int optionIndex)
     {
-        var c = activeCase
-            .interviewDecisions[index]
-            .choices[optionIndex];
+        var c =
+            activeCase
+                .interviewDecisions[index]
+                .choices[optionIndex];
 
+        // Unlock facts.
         if (c.unlockedFactIds != null)
         {
             foreach (var id in c.unlockedFactIds)
@@ -63,7 +71,8 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Show NPC response, then Continue
+        // Show the NPC response.
+        // Continue button will appear afterwards.
         dialogueUI.ShowResponse(
             c.npcResponse,
             Continue
@@ -74,14 +83,24 @@ public class DialogueManager : MonoBehaviour
     {
         index++;
 
-        if (index >= activeCase.interviewDecisions.Length)
+        // Finished all interview dialogue.
+        if (index >=
+            activeCase.interviewDecisions.Length)
         {
-            dialogueUI.Close();
-            complete?.Invoke();
+            FinishInterview();
+            return;
         }
-        else
-        {
-            ShowDecision();
-        }
+
+        ShowDecision();
+    }
+
+    private void FinishInterview()
+    {
+        dialogueUI.Close();
+
+        Action callback = complete;
+        complete = null;
+
+        callback?.Invoke();
     }
 }
