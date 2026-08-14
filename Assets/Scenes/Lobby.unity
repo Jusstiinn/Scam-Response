@@ -75579,6 +75579,10 @@ PrefabInstance:
       propertyPath: buttonAudioSource
       value: 
       objectReference: {fileID: 2280086658267999789}
+    - target: {fileID: 8938560613981767801, guid: 9fa83ebd5c96fc54ab94d65b84c7f747, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 8971708616155380529, guid: 9fa83ebd5c96fc54ab94d65b84c7f747, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1

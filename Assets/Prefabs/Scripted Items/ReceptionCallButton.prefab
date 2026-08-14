@@ -70,6 +70,8 @@ MonoBehaviour:
   buttonVfxPrefab: {fileID: 6761466289188383549, guid: 2cb04c99ad29eaf4bb1127796cc6f98f, type: 3}
   vfxSpawnPoint: {fileID: 8938560613981767801}
   vfxLifetime: 2
+  buttonAudioSource: {fileID: 0}
+  buttonPressSfx: {fileID: 0}
 --- !u!1 &1507805958808632389
 GameObject:
   m_ObjectHideFlags: 0
