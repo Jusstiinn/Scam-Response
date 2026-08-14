@@ -40,22 +40,122 @@ public class FinalSummaryUI : MonoBehaviour
 
         StringBuilder b = new();
 
-        foreach (
-            var result
-            in GameManager.Instance.CompletedResults
-        )
+    int caseNumber = 1;
+
+    foreach (
+        var result
+        in GameManager.Instance.CompletedResults
+    )
+    {
+        ScamCaseData data = result.caseData;
+
+        b.AppendLine(
+            $"<b>CASE {caseNumber:00} — {result.caseTitle.ToUpper()}</b>"
+        );
+
+        if (data != null)
         {
             b.AppendLine(
-                $"{result.caseTitle}: " +
-                $"{result.score} points, " +
-                $"{result.incorrectAnswers} incorrect"
+                $"Victim: {data.victimName}"
+            );
+
+            b.AppendLine(
+                $"Scam Type: {data.scamType}"
             );
         }
 
-        breakdownText.text = b.ToString();
+        b.AppendLine();
+
+        b.AppendLine(
+            $"<b>Score: {result.score} pts</b>"
+        );
+
+        b.AppendLine(
+            $"Incorrect Answers: {result.incorrectAnswers}"
+        );
+
+        b.AppendLine();
+
+        if (data != null &&
+            data.caseFileDropdowns != null &&
+            data.caseFileDropdowns.Length > 0)
+        {
+            b.AppendLine(
+                "<b>Correct Case File:</b>"
+            );
+
+            foreach (
+                CaseFileDropdownData dropdown
+                in data.caseFileDropdowns
+            )
+            {
+                if (dropdown == null ||
+                    dropdown.options == null ||
+                    dropdown.options.Length == 0)
+                {
+                    continue;
+                }
+
+                int correctIndex =
+                    dropdown.correctOptionIndex;
+
+                if (correctIndex < 0 ||
+                    correctIndex >= dropdown.options.Length)
+                {
+                    continue;
+                }
+
+                string answer =
+                    dropdown.options[correctIndex];
+
+                b.AppendLine(
+                    $"• {FormatFieldName(dropdown.fieldId)}: {answer}"
+                );
+            }
+        }
+
+        b.AppendLine();
+
+        if (data != null &&
+            !string.IsNullOrWhiteSpace(data.howToAvoid))
+        {
+            b.AppendLine(
+                "<b>Key Prevention:</b>"
+            );
+
+            b.AppendLine(
+                data.howToAvoid
+            );
+        }
+
+        b.AppendLine();
+        b.AppendLine(
+            "────────────────────────────"
+        );
+        b.AppendLine();
+
+        caseNumber++;
+    }
+
+    breakdownText.text = b.ToString();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    private string FormatFieldName(string fieldId)
+    {
+        if (string.IsNullOrWhiteSpace(fieldId))
+            return "Answer";
+
+        string formatted =
+            fieldId.Replace("_", " ");
+
+        return System.Globalization
+            .CultureInfo
+            .CurrentCulture
+            .TextInfo
+            .ToTitleCase(formatted);
     }
 
     private void Continue()

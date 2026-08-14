@@ -11,6 +11,8 @@ public class CompletedCaseResult
     public string caseTitle;
     public int score;
     public int incorrectAnswers;
+
+    public ScamCaseData caseData;
 }
 
 public class GameManager : MonoBehaviour
@@ -72,7 +74,8 @@ public class GameManager : MonoBehaviour
             caseId = CurrentCase.caseId,
             caseTitle = CurrentCase.caseTitle,
             score = CurrentCaseScore,
-            incorrectAnswers = CurrentIncorrectAnswers
+            incorrectAnswers = CurrentIncorrectAnswers,
+            caseData = CurrentCase
         });
         CurrentCase = null;
         unlockedFacts.Clear();
