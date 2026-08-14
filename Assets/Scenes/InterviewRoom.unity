@@ -2778,6 +2778,7 @@ MonoBehaviour:
   playerChairPoint: {fileID: 1887761037}
   playerChairInteraction: {fileID: 606677405}
   dialogueManager: {fileID: 1429276578}
+  dialogueUI: {fileID: 1707917887}
   lobbySceneName: Lobby
 --- !u!4 &1429276580
 Transform:
